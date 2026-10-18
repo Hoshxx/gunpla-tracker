@@ -1,0 +1,29 @@
+name: Update manuals
+on:
+  schedule:
+    - cron: "30 2 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python update_manuals.py
+      - name: Save changes and rebuild the site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "manuals-bot"
+          git config user.email "manuals-bot@users.noreply.github.com"
+          git add manuals.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update manuals"
+            git push
+            gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
+          fi
