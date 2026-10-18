@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Gunpla Radar – Bandai Hobby reissues by quarter</title>
+<title>Gunpla Resale Radar – Bandai Hobby reissues by quarter</title>
 <meta name="description" content="Browse upcoming Gunpla resales and reissues by quarter, grade and sales channel (general retail, Premium Bandai, Gundam Base), with English names and prices.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%2250%22 fill=%22%231b4a9b%22/><rect y=%2250%22 width=%22100%22 height=%2530%22 fill=%22%23c8202f%22/><rect y=%2280%22 width=%22100%22 height=%2220%22 fill=%22%23f0b90b%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,12 +106,12 @@ h1.bn{font-stretch:68%;font-weight:800;font-size:clamp(28px,6vw,36px);line-heigh
 .hd .tabs{padding:0;margin:0;max-width:none;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
 .hd .tabs button{white-space:nowrap;padding:10px 0 12px;margin-bottom:-1px}
 .intro{max-width:1100px;margin:0 auto;padding:22px 20px 24px}.intro p{max-width:60ch;margin:0;color:var(--mut)}
-.mrow{display:flex;gap:6px 14px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid var(--rule)}.mrow .n{flex:1 1 320px;min-width:0;overflow-wrap:anywhere}.mrow .d{color:var(--mut);font-size:13px}.mrow .ph{margin:0}
+.mrow{display:flex;gap:6px 14px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid var(--rule)}.mrow .n{flex:1 1 320px;min-width:0;overflow-wrap:anywhere}.mrow .d{color:var(--mut);font-size:13px}.mrow .en{font-weight:600}.mrow .jp{color:var(--mut);font-size:13px}.mrow .ph{margin:0}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head><body>
 
 <div class="band"><i></i><i></i><i></i></div>
-<div class="hdw"><header class="hd"><a class="brand" href="./"><span class="mark"><i></i><i></i><i></i></span><h1 class="bn">Gunpla Radar</h1></a>
+<div class="hdw"><header class="hd"><a class="brand" href="./"><span class="mark"><i></i><i></i><i></i></span><h1 class="bn">Gunpla Resale Radar</h1></a>
 <nav class="tabs" id="tabs"><button data-t="kits" aria-pressed="true">All kits</button><button data-t="watch" aria-pressed="false">Watchlist<span id="wc" class="cnt"></span></button><button data-t="manuals" aria-pressed="false">Manuals</button><button data-t="news" aria-pressed="false">News and calendar<span id="nc" class="cnt hot"></span></button></nav></header></div>
 <div class="intro"><p>Reissues and price revisions from Bandai Hobby, grouped by quarter and sales channel. Prices are in yen, tax included.</p></div>
 <div class="wrap" id="kv">
@@ -672,14 +672,16 @@ function news(){news0();const fresh=unseen(),ids=new Set(fresh.map(nid));
  $("nv").innerHTML=$("nv").innerHTML.replace('<div class="nvi">','<div class="nvi">'+ban).replace("<h3>Jump to","<h3>Latest official Gundam news</h3>"+(list?'<ul class="nl">'+list+"</ul>":"<p>No headlines are loaded yet. Open the official news page for the latest posts.</p>")+"<h3>Jump to");
  if(fresh.length){markSeen();nbadge()}}
 let MAN=null,MQ="";
+const JPX=/[\u3040-\u30ff\u3400-\u9fff\uff00-\uffef]/;
+const splitT=t=>{const w=t.split(" ");let k=w.length;while(k>0&&!JPX.test(w[k-1]))k--;const en=w.slice(k).join(" "),jp=w.slice(0,k).join(" ");return en?{en,jp}:{en:jp,jp:""}};
 const mquery=(g,n)=>{const w=n.replace(/\([^)]*\)|\[[^\]]*\]/g," ").replace(/\b(HG|MG|RG|PG|EG|SD|BB|RE\/100|1\/\d+)\b/gi," ").replace(/[“”"]/g," ").trim().split(/\s+/).filter(Boolean).slice(0,3);const p={HG:"HG",MG:"MG",RG:"RG",PG:"PG",RE:"RE/100"}[g];return(p?p+" ":"")+w.join(" ")};
 const loadMan=async()=>{if(MAN)return;try{const r=await fetch("manuals.json");MAN=r.ok?await r.json():[]}catch(e){MAN=[]}};
-function manuals(){$("mv").innerHTML='<div class="nvi"><h2>Instruction manuals</h2><p>Search any Bandai plastic kit by English or Japanese name, part number or year. Each result opens the official manual on Bandai’s own site. Manuals belong to Bandai Spirits, so this page only links to them.</p><div class="bar"><input id="mq" type="search" placeholder="Search manuals (Zaku, ザク, HG Leopard)" aria-label="Search manuals"></div><div class="sum"><b id="mc"></b></div><div id="mr"></div></div>';
+function manuals(){$("mv").innerHTML='<div class="nvi"><h2>Instruction manuals</h2><p>Search any Bandai plastic kit by English or Japanese name, part number or year. Each result opens the official manual on Bandai’s own site. Manuals belong to Bandai Spirits, so this page only links to them. Most of a manual is diagrams with part codes (A1, B2…) that match the sprues, and safety and assembly notes are often given in English too. For anything else, use your browser’s Translate or your phone’s camera translation.</p><div class="bar"><input id="mq" type="search" placeholder="Search manuals (Zaku, ザク, HG Leopard)" aria-label="Search manuals"></div><div class="sum"><b id="mc"></b></div><div id="mr"></div></div>';
  const inp=$("mq");inp.value=MQ;inp.oninput=()=>{MQ=inp.value;mres()};loadMan().then(mres)}
 function mres(){const el=$("mr");if(!el||!MAN)return;const q=MQ.trim(),t=q.split(/\s+/).filter(Boolean);let list=MAN,used=q;
  if(t.length){list=[];for(let n=t.length;n>=1;n--){const m=mk(t.slice(0,n).join(" "));list=MAN.filter(x=>m(x.t));if(list.length){used=t.slice(0,n).join(" ");break}}}
  $("mc").textContent=!MAN.length?"The manual index is still being built. Try again later, or search on Bandai’s site.":list.length?list.length+" manual"+(list.length>1?"s":"")+(used!==q?" for “"+used+"” (no match for the full search)":""):"No manuals found. Not every kit has an online manual yet.";
- el.innerHTML=list.slice(0,60).map(x=>'<div class="mrow"><span class="n">'+esc(x.t)+'</span><span><span class="d">'+esc(x.d||"")+'</span> <a class="ph" href="https://manual.bandai-hobby.net/pdf/'+x.id+'.pdf" target="_blank" rel="noopener noreferrer">Manual (PDF)</a> <a class="ph" href="https://manual.bandai-hobby.net/menus/detail/'+x.id+'" target="_blank" rel="noopener noreferrer">Bandai page</a></span></div>').join("")+(list.length>60?'<p class="note">Showing the first 60. Add more words to narrow it down.</p>':"")}
+ el.innerHTML=list.slice(0,60).map(x=>(()=>{const z=splitT(x.t);return'<div class="mrow"><span class="n"><b class="en">'+esc(z.en)+'</b>'+(z.jp?'<br><span class="jp">'+esc(z.jp)+'</span>':"")+'</span>'})()+'<span><span class="d">'+esc(x.d||"")+'</span> <a class="ph" href="https://manual.bandai-hobby.net/pdf/'+x.id+'.pdf" target="_blank" rel="noopener noreferrer">Manual (PDF)</a> <a class="ph" href="https://manual.bandai-hobby.net/menus/detail/'+x.id+'" target="_blank" rel="noopener noreferrer">Bandai page</a></span></div>').join("")+(list.length>60?'<p class="note">Showing the first 60. Add more words to narrow it down.</p>':"")}
 function nbanner(){const f=items.filter(isNew),el=$("nb");if(!f.length){el.innerHTML="";return}
  const last=f.reduce((m,i)=>i.a>m?i.a:m,"");if((LS.get("gp-nb")||"")>=last){el.innerHTML="";return}
  el.innerHTML='<div class="alert"><b>'+f.length+" kit"+(f.length>1?"s":"")+" added to the resale list</b><ul>"+f.slice(0,6).map(i=>"<li>"+esc(i.n)+" ("+qlabel(i.p)+", "+CHN[i.c][0]+")</li>").join("")+(f.length>6?"<li>and "+(f.length-6)+" more</li>":"")+'</ul><button class="chip" id="nbs">Show all new kits</button> <button class="rs" id="nbd">Dismiss</button></div>';
