@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gunpla Resale Tracker – Bandai Hobby reissues by quarter</title>
+<meta name="description" content="Browse upcoming Gunpla resales and reissues by quarter, grade and sales channel (general retail, Premium Bandai, Gundam Base), with English names and prices.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%2250%22 fill=%22%231b4a9b%22/><rect y=%2250%22 width=%22100%22 height=%2530%22 fill=%22%23c8202f%22/><rect y=%2280%22 width=%22100%22 height=%2220%22 fill=%22%23f0b90b%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eceef1;--sf:#f8f9fa;--ink:#15181d;--mut:#566070;--rule:#cdd1d8;--blue:#1b4a9b;--red:#c8202f;--yel:#f0b90b;--ac:#1b4a9b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root{--bg:#13161b;--sf:#1a1e25;--ink:#e8eaee;--mut:#9aa3b2;--rule:#2b313b;--blue:#7aa6f5;--red:#ff7480;--yel:#f3c640;--ac:#7aa6f5}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Archivo,system-ui,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}
+.band{display:flex;height:8px}.band i{display:block}.band i:nth-child(1){flex:5;background:var(--blue)}.band i:nth-child(2){flex:3;background:var(--red)}.band i:nth-child(3){flex:2;background:var(--yel)}
+header{max-width:1100px;margin:0 auto;padding:34px 20px 26px}
+h1{font-stretch:66%;font-weight:800;font-size:clamp(46px,10vw,96px);line-height:.92;margin:0;letter-spacing:-.01em}
+header p{max-width:54ch;margin:14px 0 0;color:var(--mut)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px 36px;display:grid;grid-template-columns:230px 1fr;gap:40px;align-items:start}
+aside{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}
+
+.flt>summary{display:none}
+.grp{margin:0 0 22px}.grp h2{font-size:14px;font-weight:600;color:var(--mut);margin:0 0 6px}
+.opt{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:none;border:0;border-left:3px solid transparent;color:var(--ink);font:inherit;font-size:15px;padding:5px 10px;cursor:pointer}
+.opt span{color:var(--mut)}
+.opt:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.opt[aria-pressed=true]{border-left-color:var(--ink);font-weight:700;background:var(--sf)}
+:is(.opt,input,select,.more,.rs,.top,summary):focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.bar{display:flex;gap:10px}
+input,select{font:inherit;color:var(--ink);background:var(--sf);border:1px solid var(--rule);border-radius:2px;padding:9px 11px}
+input{flex:1;min-width:0}
+.sum{display:flex;justify-content:space-between;font-size:14px;color:var(--mut);margin:10px 0 0}
+.rs{background:none;border:0;color:var(--ink);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+.sec{display:flex;flex-wrap:wrap;gap:2px 12px;justify-content:space-between;align-items:baseline;border-top:4px solid var(--c);margin:28px 0 0;padding:9px 0 6px}
+.sec b{font-stretch:70%;font-weight:800;font-size:28px;line-height:1}.sec span{color:var(--mut);font-size:14px}
+
+.it{display:grid;grid-template-columns:78px minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.acts{display:flex;align-items:center;gap:10px;justify-self:end}
+.g{font-size:13px;font-weight:700;border-left:4px solid var(--ink);padding-left:8px}
+.p{font-weight:600}
+.own{background:transparent;border:1px solid var(--mut);color:var(--mut);border-radius:4px;padding:4px 8px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;}
+.own:hover{border-color:var(--ink);color:var(--ink);}
+.own.on{background:var(--g-HG);color:#fff;border-color:var(--g-HG);}
+.own.on:hover{opacity:.8;}
+.more{display:block;width:100%;margin:12px 0 0;padding:11px;background:none;border:1px solid var(--ink);color:var(--ink);font:inherit;font-weight:600;cursor:pointer;border-radius:2px}
+.more:hover{background:var(--ink);color:var(--bg)}
+.empty{padding:40px 0;color:var(--mut)}
+.top{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);border:0;padding:10px 14px;font:inherit;font-weight:600;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;border-radius:2px}
+.top.show{opacity:1;pointer-events:auto}
+footer{max-width:1100px;margin:0 auto;padding:22px 20px 44px;border-top:1px solid var(--rule);color:var(--mut);font-size:13px;line-height:1.65}
+footer p{max-width:72ch;margin:0 0 8px}
+main,aside{min-width:0}.n{overflow-wrap:anywhere}select{max-width:45%}
+
+@media(max-width:859px){
+.wrap{grid-template-columns:minmax(0,1fr);gap:14px}
+aside{position:static;max-height:none;overflow:visible}
+.flt>summary{display:flex;align-items:center;gap:10px;min-height:48px;cursor:pointer;padding:10px 14px;background:var(--sf);border:1px solid var(--rule);font-weight:600;list-style:none}
+.flt>summary::-webkit-details-marker{display:none}
+.flt>summary span{font-weight:400;color:var(--mut);margin-left:auto;white-space:nowrap}
+.flt>summary::after{content:"";flex:none;width:8px;height:8px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);margin:-3px 2px 0 4px}
+.flt[open]>summary::after{transform:rotate(225deg);margin-top:3px}
+.bar select{flex:1 1 120px;max-width:none}
+.flt[open]>summary{margin-bottom:14px}
+.list{display:flex;flex-wrap:wrap;gap:6px}
+.opt{width:auto;border:1px solid var(--rule);padding:6px 10px}
+.opt[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.opt[aria-pressed=true] span{color:inherit}
+.grp{margin-bottom:16px}
+.it{grid-template-columns:56px minmax(0,1fr);gap:10px}
+.acts{grid-column:1 / -1;justify-self:stretch;justify-content:space-between;margin-top:2px}
+}
+[hidden]{display:none!important}
+.tabs{max-width:1100px;margin:0 auto;padding:0 20px 18px;display:flex;flex-wrap:wrap}
+.tabs button{font:inherit;font-weight:600;background:none;border:0;border-bottom:3px solid transparent;color:var(--mut);padding:8px 0;margin-right:22px;cursor:pointer}
+.tabs button[aria-pressed=true]{color:var(--ink);border-bottom-color:var(--ink)}
+.bar{flex-wrap:wrap}.bar input{flex:1 1 220px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0 2px;font-size:14px;color:var(--mut)}
+.chip{font:inherit;font-size:14px;background:var(--ink);color:var(--bg);border:0;border-radius:2px;padding:4px 10px;cursor:pointer}
+.sum{flex-wrap:wrap;gap:4px 14px;align-items:baseline}.sum b{color:var(--ink);font-size:16px}#rt{flex:1 1 200px;font-size:12px}
+.star{background:none;border:0;color:var(--mut);font-size:20px;line-height:1;cursor:pointer;padding:0 2px;transition:transform .2s,color .2s}.star:hover{transform:scale(1.2)}.star:active{transform:scale(.9)}.star.on{color:var(--yel)}
+.p small{font-weight:400;color:var(--mut)}
+.alert{background:var(--sf);border:1px solid var(--ink);border-left:6px solid var(--yel);padding:12px 14px;margin-bottom:14px}.alert ul{margin:6px 0 8px;padding-left:18px}
+.budget{background:var(--sf);border:1px solid var(--rule);border-radius:4px;padding:16px;margin-bottom:20px}
+.budget h3{margin:0 0 14px;font-size:16px}
+.budget-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.bq{background:var(--bg);padding:10px;border-radius:4px;border:1px solid var(--rule)}
+.bq span{display:block;font-size:13px;color:var(--mut);margin-bottom:2px}
+.bq b{display:block;font-size:18px}
+.bq b small{font-size:12px;display:block;margin-top:2px}
+.nvi{max-width:1100px;margin:0 auto;padding:0 20px 36px}.nvi h2{font-stretch:70%;font-weight:800;font-size:32px;margin:0 0 6px}.nvi h3{margin:26px 0 10px}
+.lk{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.lk a{color:var(--ink);border:1px solid var(--ink);padding:10px 14px;text-decoration:none;font-weight:600}.lk a:hover{background:var(--ink);color:var(--bg)}
+.qg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}.qc{font:inherit;text-align:left;background:var(--sf);border:1px solid var(--rule);padding:12px;cursor:pointer;color:var(--ink)}.qc b{display:block;font-size:18px}.qc span{font-size:13px;color:var(--mut)}
+:root{--g-HG:#1f7a5c;--g-MG:#6a3fb5;--g-RG:#c25a0a;--g-PG:#8a6508;--g-RE:#b02f6c;--g-SD:#0b7d96;--g-FM:#4a5a73;--g-DC:#6b7587;--g-OT:#6b7587}
+.g{background:var(--gc);color:#fff;border:0;border-radius:2px;padding:2px 8px;white-space:nowrap;justify-self:start}
+.ol{display:flex;align-items:center;gap:8px;font-weight:inherit}.dt{width:10px;height:10px;border-radius:2px;flex:none}
+.ph{margin-left:8px;font-size:12px;color:var(--mut);white-space:nowrap}.ph:hover{color:var(--ink)}
+.nw{font-style:normal;font-size:11px;font-weight:700;background:var(--yel);color:#15181d;padding:1px 6px;border-radius:2px;margin-left:6px}
+.tabs .cnt{display:inline-block;min-width:20px;padding:0 6px;margin-left:7px;border-radius:10px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:700;line-height:20px;text-align:center;vertical-align:1px}.cnt:empty{display:none}
+.cnt.hot{background:var(--yel);color:#15181d}
+.nl{list-style:none;margin:0 0 6px;padding:0}.nl li{padding:9px 0;border-bottom:1px solid var(--rule)}.nl span{color:var(--mut);font-size:13px;margin-right:10px;white-space:nowrap}.nl a{color:var(--ink)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+
+<div class="band"><i></i><i></i><i></i></div>
+<header>
+<h1>Gunpla resale tracker</h1>
+<p>Reissues and price revisions from Bandai Hobby, grouped by quarter and sales channel. Prices are in yen, tax included.</p>
+</header>
+<nav class="tabs" id="tabs"><button data-t="kits" aria-pressed="true">All kits</button><button data-t="watch" aria-pressed="false">Watchlist<span id="wc" class="cnt"></span></button><button data-t="news" aria-pressed="false">News and calendar<span id="nc" class="cnt hot"></span></button></nav>
+<div class="wrap" id="kv">
+<aside><details class="flt" id="fl"><summary>Filters <span id="fs"></span></summary>
+<div class="grp"><h2>Newly Added</h2><div class="list" id="lnw"></div></div>
+<div class="grp"><h2>Quarter</h2><div class="list" id="lq"></div></div>
+<div class="grp"><h2>Sales channel</h2><div class="list" id="lc"></div></div>
+<div class="grp"><h2>Price Bracket</h2><div class="list" id="lp"></div></div>
+<div class="grp"><h2>Grade</h2><div class="list" id="lg"></div></div>
+<div class="grp"><h2>Series</h2><div class="list" id="lr"></div></div>
+</details></aside>
+<main>
+<div id="al"></div>
+<div class="bar"><input id="s" type="search" placeholder="Search kits, English or Japanese (Zaku, ザク)" aria-label="Search kit name"><select id="o" aria-label="Sort"><option value="">Original order</option><option value="a">Price, low to high</option><option value="d">Price, high to low</option><option value="az">Name, A to Z</option><option value="za">Name, Z to A</option></select><select id="cur" aria-label="Currency"><option value="php">₱ PHP</option><option value="jpy">¥ JPY</option><option value="both">₱ and ¥</option></select></div>
+<div class="chips" id="chips"></div>
+<div class="sum"><b id="sm"></b><span id="rt"></span><button class="rs" id="rs">Clear all filters</button></div>
+<div id="out"></div>
+</main></div>
+<section id="nv" hidden></section>
+<button id="top" class="top">Top</button>
+<footer>
+<p><b>Unofficial fan project.</b> Not affiliated with or endorsed by Bandai Spirits, Sunrise or Sotsu. Gundam and Gunpla are trademarks of their respective owners.</p>
+<p>Kit data comes from Bandai Hobby Site price-revision notices, with the Premium Bandai lists updated October 15, 2026. Prices are the new price in yen, tax included. English names are unofficial translations. Some lists may be incomplete, and schedules and prices can change, so confirm with Bandai Hobby Site, Premium Bandai or your retailer before buying.</p>
+</footer>
+
+<script>
+const D=`@2026-Q3|regular
+HG Girarga|1980
+HG Zaku I “Old Zaku” (Gundam Thunderbolt Ver.)|2420
+HG Gundam G-Lucifer|2750
+HG MSM-03 Gogg (UC)|1320
+HG MSN-02 Zeong (UC)|2310
+HG Psyco Gundam (UC)|6050
+HG G-Armor (UC)|3850
+HG Gabthley (UC)|1980
+HG Zaku I “Old Zaku” (UC)|1320
+HG Char’s Gelgoog (UC)|1980
+HG Gundam X Divider (AW)|2200
+HG Shining Gundam (FC)|1980
+HG Dreissen (UC)|2640
+HG Gyan (UC)|1650
+HG Barzam (UC)|1980
+HG Garbaldi-β (UC)|1980
+HG Destiny Gundam (Heine Custom) (CE)|2640
+HG Gundam Heavyarms (AC)|1870
+MG Super Gundam|4950
+MG RX-77-2 Guncannon|3960
+MG Hyaku-Shiki + Ballute System|4950
+MG Gundam Mk-II Ver.2.0 Titans|4400
+MG GX-9900 Gundam X|4950
+RG RX-178 Gundam Mk-II Titans Spec|3080
+OT 1/100 Gundam X|2090
+OT 1/100 Gundam Airmaster|2090
+OT 1/100 Gundam Leopard|2090
+OT 1/100 Gundam X Divider|2090
+PG PG 1/60 RX-0 Unicorn Gundam|24200
+PG PG 1/60 RX-0 Unicorn Gundam LED Unit|14300
+OT 1/48 Mega Size Model MS-06S Char’s Zaku|9680
+RE RE/100 Vigna Ghina|4290
+OT 1/100 G-Cannon|1210
+OT 1/100 Guntank R-44|990
+OT 1/100 Belga Giros|1430
+OT 1/100 Heavygun|1210
+OT 1/100 Dagi Ils|1210
+OT 1/100 Gundam F91|1980
+OT 1/100 RX-99 Neo Gundam|2310
+SD Sangoku Soketsuden Dong Zhuo Providence Gundam|880
+SD Sangoku Soketsuden Lu Bu Sinanju & Red Hare|1760
+SD Sangoku Soketsuden Taishi Ci Duel Gundam|880
+SD Sangoku Soketsuden Dian Wei Master Gundam|990
+SD Sangoku Soketsuden Gan Ning Crossbone Gundam|990
+SD SDW Heroes War Horse Knight World Ver.|770
+SD SDW Heroes Warlock Aegis Gundam|1100
+SD SDW Heroes Superior Strike Freedom Dragon|1650
+SD BB Senshi 113 Windmill Hyaku-Shiki and Careless Zakuret|770
+SD BB Senshi 166 Shinpoh Ganda Mu|770
+SD BB Senshi 167 Kishin Daishogun Shishiryuuhou, Brilliant Steel Gokusai|4180
+SD BB Senshi 172 Goken Ganda Mu, Brilliant Steel Gokusai|1430
+OT Builders Parts HD MS Sight Lens 01 (Green)|660
+OT Builders Parts HD MS Panel 01|660
+DC Gundam Decal No.110 for Mobile Suit Gundam MSV General 1|550
+OT 30MM 1/144 eEXM-17 Alto [Blue]|1518
+OT RG Gaogaigar|7150
+OT Figure-rise Standard Super Saiyan God SS Gogeta|3740
+OT Figure-rise Standard Super Saiyan Broly Full Power|5500
+OT Figure-rise Standard Son Goku (Ultra Instinct)|3300
+OT Figure-rise Standard Super Saiyan God SS Vegito|3300
+OT Figure-rise Standard Super Saiyan Vegito|3300
+OT Figure-rise Standard Super Saiyan God SS Son Goku|2970
+OT Figure-rise Standard Cell (Perfect Form)|3300
+OT Figure-rise Standard Super Saiyan 2 Son Gohan|2640
+OT 1/12 C-3PO|4400
+OT Vehicle Model 001 Star Destroyer|880
+OT Vehicle Model 002 X-Wing Starfighter|880
+OT Vehicle Model 006 Millennium Falcon|880
+OT Vehicle Model 007 TIE Advanced x1 & Fighter Set|880
+OT Vehicle Model 013 Death Star II|1210
+OT Vehicle Model Razor Crest|1738
+OT Pokémon Plamo Collection 05 Select Series Ho-Oh|1100
+OT Pokémon Plamo Collection 39 Select Series Solgaleo|1210
+OT Pokémon Plamo Collection 40 Select Series Lunala|1210
+@2026-Q3|pbandai
+HG Dortless|1540
+MG Stark Jegan|7920
+MG MSA-003 Nemo Unicorn Color Ver.|3850
+MG MSA-003 Nemo Unicorn Desert Color Ver.|3850
+HG Rigelg (Unicorn Ver.)|2750
+SD LegendBB Shinsei Daishogun|5060
+SD LegendBB Musha Gundam Maru (Final Battle Ver.)|2750
+HG Gundam Airmaster Burst|2750
+MG Re-GZ Custom|6600
+MG Trans-Am Raiser|7700
+MG Gundam Dynames (Trans-Am Mode) [Metallic Gloss Injection]|5500
+HG Gato’s Gelgoog (UC)|2420
+MG MS-06R-1A Anavel Gato’s Zaku II Ver.2.0|5830
+MG Anavel Gato’s Gelgoog Ver.2.0|6050
+OT HG 1/35 Lancelot Albion|5280
+OT HG 1/35 Guren Type-Special Seiten Hakkyoku-shiki|5830
+OT HG 1/35 Gawain|6050
+MG Gundam AGE-2 Normal Special Forces Spec|5280
+MG Gundam AGE-1 Unit 2|4290
+MG Altron Gundam EW|5390
+MG Marasai (Unicorn Color Ver.)|5280
+MG Zaku Cannon (Unicorn Color Ver.)|5610
+MG Z'Gok (Unicorn Color Ver.)|3960
+HG Isaac / Gaza C / Geara Doga (Unicorn Ver.) Set|6490
+HG Rezel Type-C (General Revil Deployment)|2750
+HG Rezel (Defenser-b Unit)|3190
+HG Dra-C (Unicorn Ver.)|2640
+HG GM III (Unicorn Desert Color Ver.)|1980
+HG Dom Tropen (Unicorn Ver.)|2310
+RG Strike Freedom Gundam Deactive Mode|3850
+HG Base Jabber (Unicorn Zeon Remnant Color Ver.)|1430
+MG Turn A Gundam / Turn X [Nano Skin Image]|15180
+HG Sinanju Stein (Unicorn Ver.)|3080
+RG Unicorn Gundam Unit 3 Phenex (Narrative Ver.)|13530
+RG Gundam Astray Gold Frame Amatsu|3850
+MG Zeta Plus (Unicorn Ver.)|4180
+MG Geara Doga (Unicorn Ver.)|5940
+MG Gundam X Unit 3|4840
+HG Rick Dias|2420
+HG Rick Dias (Quattro Bajeena)|2420
+HG Geara Zulu (Gilboa Sant)|2860
+HG Geara Zulu (Cuaron)|2640
+HG GM II Semi-Striker (UC)|2090
+HG Silver Bullet (Funnel Test Type) (UC)|2970
+HG Silver Bullet (Gael Chan Custom)|3080
+HG Johnny Ridden’s Gelgoog|2640
+MG Johnny Ridden’s Gelgoog|6930
+MG Geara Doga (Rezun Schneider Custom)|6050
+HG Zeta Gundam (Wave Shooter)|2420
+@2026-Q3|gbase
+HG Gundam Base Ltd. Narrative Gundam B-Packs|3740
+HG Gundam Base Ltd. Narrative Gundam C-Packs [Titanium Finish]|6820
+HG Gundam AGE II Magnum [Dive into Dimension Clear] (BD)|2640
+HG Narrative Gundam C-Packs [Clear Color]|2970
+HG Narrative Gundam C-Packs [Awakening Image Color]|2970
+@2026-Q4|regular
+HG Gundam Astray Red Frame|1650
+HG Gundam Astray Blue Frame|1650
+HG R02 Duel Gundam Assault Shroud|1650
+HG R03 Buster Gundam|1430
+HG R04 Blitz Gundam|1650
+HG R05 Aegis Gundam|1650
+HG R06 Mobile GINN|1430
+HG R07 Mobile CGUE|1650
+HG R08 Calamity Gundam|1650
+HG R09 Forbidden Gundam|2090
+HG R10 Raider Gundam|2090
+HG R11 Lagowe|1870
+HG R12 Mobile BuCUE|1870
+HG R16 M1 Astray|1870
+HG R17 Perfect Strike Gundam|2420
+HG ZAKU Warrior|1430
+HG Chaos Gundam|2090
+HG Gaia Gundam|2090
+HG Sword Impulse Gundam|2090
+HG Gunner ZAKU Warrior (Lunamaria Hawke)|1760
+HG Gunner ZAKU Warrior|1760
+HG Saber Gundam|2090
+HG ZAKU Warrior (Live Concert Ver.)|1430
+HG Abyss Gundam|2090
+HG Blaze ZAKU Phantom (Rey Za Burrel)|2090
+HG Dom Trooper|2090
+HG Murasame (Andrew Waltfeld)|2090
+HG Murasame (Mass Production)|2090
+OT 1/100 Gale Strike Gundam|3410
+OT 1/100 Hail Buster Gundam|3410
+OT 1/100 Regen Duel Gundam|3410
+OT 1/100 Nix Providence Gundam|3410
+OT 1/100 Van Saber Gundam|3740
+OT 1/100 Nebula Blitz Gundam|3740
+OT 1/100 Gundam Virsago|2530
+OT 1/100 Gundam Double X|2530
+OT 1/100 Gundam Airmaster Burst|2200
+OT 1/100 Leopard Destroy|2200
+OT 1/100 G-Falcon Unit Gundam Double X|4070
+OT 1/100 Gundam Astray Blue Frame Second L|3410
+OT 1/100 Chaos Gundam|3190
+OT 1/100 Gunner ZAKU Warrior (Lunamaria Hawke)|3190
+OT 1/100 Saber Gundam|3520
+OT 1/100 Akatsuki Gundam (Ohwashi/Shiranui Full Set)|8800
+OT 1/100 Gundam Astray Green Frame|3410
+OT 1/100 Gundam Astray Mirage Frame|3410
+OT 1/100 Gundam Astray Mirage Frame Second Issue|3410
+HG Verde Buster Gundam|2200
+HG Blu Duel Gundam|2200
+HG Cerberus BuCUE Hound|2090
+HG ZAKU I Sniper (UC)|1870
+HG Schuzrum Dias (UC)|2310
+HG Geara Zulu, Guard Unit (UC)|2640
+HG Jesta (UC)|2200
+HG GM II (UC)|1870
+HG Byarlant Custom (UC)|3300
+HG Kshatriya Repaired (UC)|8030
+MG Strike Gundam + I.W.S.P.|5170
+MG Strike Noir Gundam|5500
+MG Launcher/Sword Strike Gundam|6160
+MG RMS-108 Marasai|4950
+MG Aile Strike Gundam Ver.RM|5170
+MG Gunner ZAKU Warrior (Lunamaria Hawke)|5280
+RG Skygrasper [Launcher/Sword Pack]|3300
+RG MSN-06S Sinanju|5170
+RG Crossbone Gundam X1|3300
+SD Sangoku Soketsuden Sun Shangxiang Strike Rouge|990
+SD Sangoku Soketsuden Zhou Yu Akatsuki|1210
+SD Sangoku Soketsuden Da Qiao Gundam Altemie / Xiao Qiao GN Archer|1100
+SD Sangoku Soketsuden Yanhuang Zhang Fei God Gundam|1100
+SD SDW Heroes Alternative Justice Infinite Dragon|1650
+SD SDW Heroes Dominant Superior Darkness Dragon|1650
+SD SDW Heroes Hero Returns! Goku Impulse & Sanzo Strike Freedom Set|1980
+SD SDW Heroes Nobunaga’s Warhorse|1375
+OT Builders Parts HD-20 Non-scale MS Radome 01|880
+OT 30MM 1/144 eEXM-17 Alto (Land Combat) [Brown]|2090
+OT 30MM 1/144 Option Backpack 1|550
+OT Keroro Plamo Collection Afro Sergeant|880
+OT Keroro Plamo Collection Warrior Keroro|880
+OT Keroro Plamo Collection Ashigaru Tamama|880
+OT Keroro Plamo Collection Physician Kururu|880
+OT Keroro Plamo Collection Ronin Giroro|880
+OT Keroro Plamo Collection Chief Dororo|880
+OT Keroro Plamo Collection Warrior Keroro Robo|1210
+OT Keroro Plamo Collection Ashigaru Tamama Robo|1210
+OT Keroro Plamo Collection Physician Kururu Robo|1210
+OT Keroro Plamo Collection Ronin Giroro Robo|1210
+OT Keroro Plamo Collection Chief Dororo Robo|1210
+OT Keroro Plamo Collection God Keron|6600
+OT Hyper Function LBX Achilles|3630
+OT Hyper Function LBX Ji Emperor|3630
+OT Hyper Function LBX Odin|4180
+OT Hyper Function LBX Lucifer|3630
+@2026-Q4|pbandai
+HG Gundam Gemini 01|2420
+HG Gundam Gemini 01 Assault Booster & High-Mobility Unit Expansion Set|1980
+HG Gundam Gemini 02|2420
+HG Gundam Gemini 02 Ground Heavy Unit Expansion Parts|2530
+RG Mass-Production Z'Gok|3300
+RE RE/100 Gundam Lintvurm|6050
+MG Johnny Ridden’s Zaku II|4730
+MG Gundam Barbatos Expansion Parts Set|3850
+MG Jegan D Type (Early Deployment)|5170
+RG Gundam Astray Blue Frame|3630
+RG Gundam Astray Gold Frame Amatsu Hana|3850
+RG Nu Gundam HWS|6930
+RG Gundam Astray Gold Frame|3410
+MG Gundam Heavyarms Custom EW|5720
+HG Jesta (Shezarr Team, B&C Equipment)|2970
+HG Jesta (Shezarr Team, A Equipment)|3520
+HG Shin Matsunaga’s Gelgoog J|1870
+MG Yuma Lightning’s High-Mobility Gelgoog|6600
+MG Shin Matsunaga’s Zaku II (Custom Type)|5500
+MG Full Armor Unicorn Gundam (Red Color Ver.)|9790
+HG 1/72 Dainbine|4180
+MG Slash ZAKU Phantom (Yzak Joule)|5390
+MG Gunner/Slash/Blaze Wizard Set|4290
+MG Blaze ZAKU Phantom / Blaze ZAKU Warrior|5390
+@2026-Q4|gbase
+RG Gundam Base Ltd. Sinanju [Metallic Gloss Injection]|5500
+RG Sinanju [Clear Color]|5280
+RG Crossbone Gundam X1 [Titanium Finish]|7260
+RG Crossbone Gundam X1 [Clear Color]|3410
+@2027-Q1|regular
+HG Overflag|1650
+HG Ahead (Mr. Bushido Custom)|1650
+HG Masurao|2090
+HG Brave Commander Test Type|2200
+HG Gundam AGE-3 Normal|2420
+HG Gundam G-Arcane|2200
+HG Gundam Kimaris|1650
+HG Gundam Kimaris Trooper|1870
+HG Gundam Astaroth Rinascimento|2420
+HG Gundam Marchosias|2860
+HG Zaku III Mass Production Type (UC)|2090
+HG AMX-107 Bawoo (UC)|1650
+HG MS-14F Gelgoog Marine (UC)|1650
+HG Dom Tropen (UC)|2090
+HG RX-78-2 Gundam (UC)|1430
+HG MSA-0011 S Gundam (UC)|2420
+HG Dom Tropen Sand Brown (UC)|2200
+HG Z'Gok E (UC)|1650
+HG Gundam Mk-II + Flying Armor (UC)|2640
+HG Gundam TR-1 [Advanced Hazel] (UC)|2200
+HG PMX-001 Pallas Athene (UC)|2420
+HG MSA-005 Methuss (UC)|1870
+HG Gaza C (UC)|2090
+HG Powered GM (UC)|1650
+HG Gundam TR-1 Hazel II (UC)|2090
+HG Gaplant TR-5 [Hrairoo] (UC)|3080
+HG Rick Dom II Light Green Ver. (UC)|2090
+HG Full Armor Gundam Unit 7 (UC)|2310
+HG Geara Zulu (Angelo Sauper) (UC)|2860
+HG Delta Plus (UC)|2860
+HG GM Cannon II (UC)|1870
+HG GM III (UC)|2090
+HG Nobel Gundam Berserker Mode (FC)|2090
+HG Marasai (Unicorn Ver.) (UC)|2200
+HG Rezel Type-C (Defenser-b / General Revil) (UC)|3300
+HG Gundam Delta Kai (UC)|3300
+HG Rozen Zulu (UC)|3520
+HG Jesta Cannon (UC)|2640
+HG Ground-type GM|2090
+HG Gundam AN-01 Tristan|2090
+HG Blue Destiny Unit 1 "EXAM" (UC)|2200
+HG Blue Destiny Unit 2 "EXAM" (UC)|2200
+HG Blue Destiny Unit 3 "EXAM" (UC)|2200
+HG Gustav Karl (Unicorn Ver.) (UC)|3080
+HG Narrative Gundam C-Packs (UC)|2970
+HG Hyaku-Shiki + Mega Bazooka Launcher (UC)|2420
+HG Ground Gundam Ground Battle Set (UC)|3080
+HG Zaku Ground Battle Set (UC)|3080
+MG MSZ-006C1 Zeta Plus C1|3850
+MG RX-78-5 Gundam Unit 5|3630
+MG GM Sniper|4400
+MG Destiny Gundam Extreme Blast Mode|8580
+MG Unicorn Gundam Ver.Ka|6270
+MG MSN-06S Sinanju Ver.Ka|8580
+MG RGM-79 GM Ver.2.0|4400
+MG Aegis Gundam|5830
+MG Strike Rouge Ohtori Equipment Ver.RM|5170
+MG Wing Gundam Proto Zero EW|5830
+MG GM Sniper II|4730
+MG Gundam Dynames|5610
+MG MGEX Unicorn Gundam Ver.Ka|27940
+RG MS-06R-2 Johnny Ridden’s Zaku II|3850
+RE RE/100 MSN-04II Nightingale|9900
+RE RE/100 Dijeh|4400
+RE RE/100 Jagd Doga (Gyunei Guss)|5500
+RE RE/100 Gun-EZ|4400
+SD Sangoku Soketsuden Xun Yu Ex Strike Noir|1100
+SD Sangoku Soketsuden Huang Zhong Gundam Dynames|990
+SD SDW Heroes Goku Impulse Gundam DX Set|1870
+SD SDW Heroes Nobunaga Gundam Epyon|1100
+SD SDW Heroes Cao Cao Wing Gundam (Sage Armor)|1210
+SD SDW Heroes Arsene Gundam X|990
+SD SDW Heroes Qiongqi Strike Freedom Gundam|1210
+SD SDW Heroes Rei Gundam GP04|1210
+SD SDW Heroes Tenka Musou Great General|2090
+DC Gundam Decal No.24 for MG 0083 series|770
+DC Gundam Decal No.75 for MG V Gundam Ver.Ka|770
+DC Gundam Decal No.102 for RG Gundam Mk-II (AEUG)|770
+DC Gundam Decal No.112 for RG Unicorn Gundam|770
+DC Gundam Decal No.114 for HG Thunderbolt General 1|770
+DC Gundam Decal No.117 for RG 00 Qan[T]|770
+DC Gundam Decal No.118 for MG GM Sniper II / GM Command|770
+OT 1/550 Gublow|660
+OT 1/550 Bigro|660
+OT 1/1200 Char’s Musai|660
+OT 1/1200 Musai Cruiser|660
+OT 1/1200 Gaw Attack Carrier|660
+OT 1/2400 White Base|660
+OT 1/2400 Gwazine|660
+OT 1/144 Magella Attack|770
+OT 1/550 Assam|770
+OT 1/550 Midea|770
+OT 1/550 Big Zam|770
+OT 1/1200 Salamis|770
+OT 1/144 Weapon Set (Z)|660
+OT 1/2200 Argama|660
+OT 1/35 U.C. HARD GRAPH Zeon Recon Set|1980
+OT 1/35 U.C. HARD GRAPH Zeon Lambda Ral Raiders Set|3630
+OT 1/35 U.C. HARD GRAPH EFSF Ground MS Squad Briefing Set|6600
+OT 1/35 U.C. HARD GRAPH EFSF Anti-MS Special Soldiers Set|3080
+OT 1/35 U.C. HARD GRAPH Zeon Cyclops Team Set|3410
+OT 1/35 U.C. HARD GRAPH EFSF Type 61 Tank, Semovente Squad|11550
+OT EX Model 1/144 Hildolfr|8580
+OT 30MM 1/144 eEXM-17 Alto (Air Combat) [Navy]|2090
+OT 30MM 1/144 Option Parts Set 2|770
+DC 30 Minutes Missions Water Decal General 1|660
+DC 30 Minutes Missions Water Decal General 2|660
+OT Figure-rise Standard Kamen Rider W Cyclone Joker|3740
+OT Figure-rise Standard Amplified Wargreymon|4620
+OT Pokémon Plamo Collection 27 Select Series Black Kyurem|1210
+OT Pokémon Plamo Collection 28 Select Series White Kyurem|1210
+@2027-Q1|pbandai
+MG Yuma Lightning’s Zaku II|5500
+MG Crossbone Gundam X3 Ver.Ka|5280
+MG Sazabi Ver.Ka & RE/100 Nightingale Expansion Funnel Effect Set|2310
+HG Ball K Type (08th MS Team) & Ball (Shark Mouth)|1980
+HG GM Custom Standard Color & Ball Modified Type|2530
+HG Bound Doc (Gates Capa Custom)|6050
+HG High-Mobility Prototype Zaku|2420
+HG Gouf Flight Type|2530
+MG Heavy Gundam|5390
+HG Ground Gundam (Parachute Pack)|2420
+MG Gelgoog Cannon (MSV Color)|5720
+SD LegendBB Knight Unicorn Gundam (Beast Mode Ultimate Battle Ver.)|3080
+SD LegendBB Satsukuto (Dark General Super Steel Ver.)|3300
+OT 1/100 Schwalbe Graze (Gaelio)|3850
+HG Mobile Reginlaze (General)|1650
+HG Graze (Ares General/Commander)|1430
+HG Schwalbe Graze (Gaelio)|1760
+HG Graze Ritter (McGillis)|1650
+HG Io Frame Shiden Kai (Ryusei-go)|1650
+RE RE/100 Gun-EZ Prototype|4400
+RE RE/100 Gun-EZ Ground Type|4400
+RE RE/100 Gunblaster|4400
+MG V2 Assault Buster Gundam Ver.Ka|8800
+HG Second V|2420
+FM Full Mechanics Aile Calamity Gundam|6050
+HG Ifrit (UC)|2530
+HG Ifrit Kai (UC)|2200
+HG Gundam Pixy|2530
+@2027-Q1|gbase
+DC Gundam Decal Gundam Base Ltd. HG Other Centuries Emblem Set 1|770
+DC Gundam Decal Gundam Base Ltd. HG Universal Century Emblem Set 1|770
+DC Gundam Decal RG Nu Gundam SP Ver.|1650
+DC Gundam Decal RG Sazabi SP Ver.|1320
+HG Vazam [Clear Color]|2200
+HG Byarlant [Clear Color]|3410
+HG Garbaldi-β [Clear Color]|2200
+FM Full Mechanics Calamity Gundam [Clear Color]|5720`;
+const GN={HG:"HG",MG:"MG",RG:"RG",PG:"PG",RE:"RE/100",SD:"SD / BB",DC:"Decals",FM:"Full Mech.",OT:"Other"};
+const CHN={regular:["General resale","var(--blue)"],pbandai:["Premium Bandai","var(--red)"],gbase:["Gundam Base","var(--yel)"]};
+const PR=()=>cur==="jpy"?[["u","Under ¥2,000"],["m","¥2,000 – ¥5,000"],["o","Over ¥5,000"]]:[["u","Under ₱1,000"],["m","₱1,000 – ₱2,500"],["o","Over ₱2,500"]];
+const pb=i=>{const j=cur==="jpy",v=j?i.$:i.$*R.v,a=j?2000:1000,b=j?5000:2500;return v<a?"u":v<=b?"m":"o"};
+const QN={Q1:"Jan–Mar",Q2:"Apr–Jun",Q3:"Jul–Sep",Q4:"Oct–Dec"};
+const LIM=12,open={},clr=()=>{for(const k in open)delete open[k]};let items=[],p="",c="",ad="";
+D.split("\n").forEach(l=>{if(l[0]==="@"){[p,c,ad]=l.slice(1).split("|");return}
+ const k=l.lastIndexOf("|"),h=l.slice(0,k),sp=h.indexOf(" ");
+ items.push({p,c,a:ad||"2026-10-18",g:h.slice(0,sp),n:h.slice(sp+1),$:+l.slice(k+1)})});
+const Q=[...new Set(items.map(i=>i.p))].sort();
+const qlabel=k=>QN[k.slice(5)]+" "+k.slice(0,4);
+const now=new Date(),cq=now.getFullYear()+"-Q"+(Math.floor(now.getMonth()/3)+1);
+const dq=Q.includes(cq)?cq:Q[Q.length-1];
+
+let st={q:[dq],c:[],g:[],p:[],s:"",o:"",w:false,nw:false,r:[]};
+const $=id=>document.getElementById(id),esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const isNew=i=>i.a>"2026-10-18"&&Date.now()-new Date(i.a)<12096e5;
+const AL=[["zaku","ザク"],["gundam","ガンダム"],["gm","jim","ジム"],["dom","ドム"],["gelgoog","gerugugu","ゲルググ"],["z'gok","zgok","zock","ズゴック"],["gouf","guff","グフ"],["unicorn","ユニコーン"],["strike","ストライク"],["wing","ウイング","ウィング"],["zeta","ゼータ"],["char","sha","シャア"],["sazabi","サザビー"],["nightingale","ナイチンゲール"],["sinanju","シナンジュ"],["crossbone","クロスボーン"],["astray","アストレイ"],["destiny","デスティニー"],["freedom","フリーダム"],["aegis","イージス"],["dynames","デュナメス"],["kimaris","キマリス"],["barbatos","バルバトス"],["graze","グレイズ"],["hyaku-shiki","hyakushiki","百式"],["zeong","ジオング"],["psyco","サイコ"],["bawoo","baow","バウ"],["geara","gira","ギラ"],["doga","ドーガ"],["jagd","yakt","ヤクト"],["rezel","rizel","リゼル"],["jesta","ジェスタ"],["gaplant","ギャプラン"],["marasai","マラサイ"],["methuss","metus","メタス"],["tropen","トローペン"],["heavyarms","ヘビーアームズ"],["turn a","∀","ターンa"],["guncannon","ガンキャノン"],["guntank","ガンタンク"],["gublow","グラブロ"],["musai","ムサイ"],["white base","ホワイトベース"],["argama","アーガマ"],["pixy","ピクシー"],["ifrit","イフリート"],["ball","ボール"],["kshatriya","クシャトリヤ"],["narrative","ナラティブ"],["delta","デルタ"],["epyon","エピオン"],["exia","エクシア"],["sd","sdw","bb"],["decal","デカール"]];
+const mk=q=>{const ts=q.toLowerCase().split(/\s+/).filter(Boolean).map(t=>{const g=new Set([t]);AL.forEach(a=>{if(a.some(x=>{x=x.toLowerCase();return x===t||(t.length>2&&x.startsWith(t))}))a.forEach(x=>g.add(x.toLowerCase()))});return[...g]});return n=>{n=n.toLowerCase();return ts.every(g=>g.some(x=>n.includes(x)))}};
+
+function f(skip){
+ const m=mk(st.s);
+ return items.filter(i=>{
+  const pc=pb(i);
+  return (skip==="q"||!st.q.length||st.q.includes(i.p))&&
+         (skip==="c"||!st.c.length||st.c.includes(i.c))&&
+         (skip==="g"||!st.g.length||st.g.includes(i.g))&&
+         (skip==="r"||!st.r.length||st.r.includes(i.s))&&
+         (skip==="p"||!st.p.length||st.p.includes(pc))&&
+         (skip==="nw"||!st.nw||isNew(i))&&
+         (!st.w||W[i.n])&&m(i.n)
+ })
+}
+
+const opt=(k,v,label,n,on,gc)=>`<button class="opt" aria-pressed="${on}" data-k="${k}" data-v="${v}"><b class="ol">${gc?`<i class="dt" style="background:${gc}"></i>`:""}${label}</b><span>${n}</span></button>`;
+const cnt=(a,fn)=>a.reduce((m,i)=>(m[fn(i)]=(m[fn(i)]||0)+1,m),{});
+
+function render(){
+ const aq=cnt(f("q"),i=>i.p),ac=cnt(f("c"),i=>i.c),ag=cnt(f("g"),i=>i.g);
+ $("lq").innerHTML=opt("q","","All quarters",f("q").length,!st.q.length)+Q.map(k=>opt("q",k,qlabel(k),aq[k]||0,st.q.includes(k))).join("");
+ $("lc").innerHTML=opt("c","","All channels",f("c").length,!st.c.length)+Object.keys(CHN).map(k=>opt("c",k,CHN[k][0],ac[k]||0,st.c.includes(k))).join("");
+ $("lg").innerHTML=opt("g","","All grades",f("g").length,!st.g.length)+Object.keys(GN).filter(k=>ag[k]||st.g.includes(k)).map(k=>opt("g",k,GN[k],ag[k]||0,st.g.includes(k),"var(--g-"+k+")")).join("");
+ const asr=cnt(f("r"),i=>i.s);$("lr").innerHTML=opt("r","","All series",f("r").length,!st.r.length)+SER.filter(k=>asr[k]||st.r.includes(k)).map(k=>opt("r",k,k,asr[k]||0,st.r.includes(k))).join("");
+ const ap=cnt(f("p"),pb);$("lp").innerHTML=opt("p","","All prices",f("p").length,!st.p.length)+PR().map(k=>opt("p",k[0],k[1],ap[k[0]]||0,st.p.includes(k[0]))).join("");
+ const anw=f("nw").filter(isNew).length;$("lnw").innerHTML=opt("nw","1","New kits only",anw,st.nw)+opt("nw","","All kits",f("nw").length,!st.nw);
+ 
+ const na=st.q.length+st.c.length+st.g.length+st.p.length+st.r.length+(st.nw?1:0);$("fs").textContent=na?na+" selected":"None selected";
+
+ const rows=f();$("sm").textContent="Showing "+rows.length+" of "+items.length+" kits";chips();rate();
+ 
+ if(!rows.length){
+  $("out").innerHTML='<div class="empty">'+(st.w&&!Object.keys(W).length?'<p>Your watchlist is empty. Tap the star on any kit to save it.</p>':'<p>No kits match your search or filters.</p><button class="rs" onclick="document.getElementById(\'rs\').click()">Clear all filters</button>')+'</div>';
+  return;
+ }
+ 
+ let budgetHtml = "";
+ if(st.w) {
+  let tot = 0, qs = {};
+  rows.forEach(i => { tot += i.$; qs[i.p] = (qs[i.p]||0) + i.$; });
+  budgetHtml = `<div class="budget"><h3>Watchlist Budget (Visible Items)</h3><div class="budget-grid"><div class="bq" style="background:var(--ink);color:var(--bg);border-color:var(--ink)"><span>Total</span><b>${fmt(tot)}</b></div>${Object.keys(qs).sort().map(k=>`<div class="bq"><span>${qlabel(k)}</span><b>${fmt(qs[k])}</b></div>`).join("")}</div></div>`;
+ }
+
+ const gr={};rows.forEach(i=>{const k=i.p+"|"+i.c;(gr[k]=gr[k]||[]).push(i)});
+ const ck=Object.keys(CHN);let h="";
+ Object.keys(gr).sort((a,b)=>{const[x,y]=[a.split("|"),b.split("|")];return x[0]<y[0]?-1:x[0]>y[0]?1:ck.indexOf(x[1])-ck.indexOf(y[1])}).forEach(k=>{
+  const [qk, chk] = k.split("|");
+  let g=gr[k].slice();if(st.o)g.sort((a,b)=>st.o==="a"?a.$-b.$:st.o==="d"?b.$-a.$:st.o==="az"?a.n.localeCompare(b.n):b.n.localeCompare(a.n));
+  const all=open[k]||st.s||g.length<=LIM+3;
+  h+=`<div class="sec" style="--c:${CHN[chk][1]}"><b>${CHN[chk][0]}</b><span>${qlabel(qk)}, ${g.length} kit${g.length>1?"s":""}</span></div>`+
+  (all?g:g.slice(0,LIM)).map(i=>`<div class="it"><span class="g" style="--gc:var(--g-${i.g})">${GN[i.g]}</span><span class="n">${esc(i.n)}${isNew(i)?' <i class="nw">New</i>':""} <a class="ph" href="${pic(i)}" target="_blank" rel="noopener noreferrer">Photos</a></span><div class="acts"><span class="p">${fmt(i.$)}</span><button class="own${O[i.n]?" on":""}" data-o="${esc(i.n)}" aria-pressed="${!!O[i.n]}">${O[i.n]?"✓ Secured":"+ Pre-order"}</button><button class="star${W[i.n]?" on":""}" data-w="${esc(i.n)}" aria-pressed="${!!W[i.n]}" aria-label="Watch ${esc(i.n)}">${W[i.n]?"★":"☆"}</button></div></div>`).join("")+
+  (all?"":`<button class="more" data-more="${k}">Show all ${g.length} kits</button>`)});
+ $("out").innerHTML= budgetHtml + h;
+}
+
+const SER=["UC","SEED / Destiny","Wing / After Colony","00","Iron-Blooded Orphans","Witch from Mercury","Other Gundam series","SD / BB","Non-Gundam"];
+const RX=[["Non-Gundam",/Pok[eé]mon|Keroro|LBX|Figure-rise|Vehicle Model|C-3PO|Hyper Function|30MM|30 Minutes|Gaogaigar|Builders Parts|HARD GRAPH|Lancelot|Guren|Gawain|Dainbine/i],
+["UC",/\(UC\)|Blue Destiny|V2|Thunderbolt/i],
+["Iron-Blooded Orphans",/Barbatos|Graze|Kimaris|Marchosias|Astaroth|Reginlaze|Io Frame|Shiden/i],
+["Witch from Mercury",/Aerial|Schwarzette|Darilbalde|Lfrith/i],
+["00",/Dynames|Kyrios|Exia|Qan\[T\]|Trans-Am Raiser|Overflag|Ahead|Masurao|Brave Commander/i],
+["SEED / Destiny",/\(CE\)|Astray|Strike|Freedom|Providence|Aegis|Duel|Buster Gundam|Blitz|Calamity|Forbidden|Raider|Chaos|Gaia|Abyss|Impulse|Saber Gundam|Zaku Warrior|Zaku Phantom|Wizard|GINN|CGUE|BuCUE|Lagowe|Murasame|Dom Trooper|Destiny|Akatsuki|Verde|Skygrasper/i],
+["Wing / After Colony",/Wing Gundam|Heavyarms|Altron|Epyon/i],
+["UC",/Zaku|Gelgoog|Gouf|Dom |Zeong|Gogg|Z'Gok|Gyan|Psyco|G-Armor|Gabthley|Barzam|Garbaldi|Dreissen|Mk-II|Zeta|Hyaku|Nu Gundam|Sazabi|Unicorn|Sinanju|Banshee|Kshatriya|Narrative|Nightingale|\bGM\b|Jegan|Jesta|Rezel|Marasai|Methuss|Pallas|Hazel|TR-1|Gaplant|Rick|Geara|Doga|Jagd|Vigna|F91|Pixy|Ifrit|Ball|Guncannon|Guntank|G-Cannon|Gublow|Bigro|RX-|MSZ|MSN|MSA|AMX|PMX|Gustav|Bawoo|Delta|Rozen|Silver Bullet|Silva|Zulu|Re-GZ|Dijeh|Base Jabber|Full Armor|Hildolfr|Musai|White Base|Gwazine|Argama|Magella|Assam|Midea|Big Zam|Salamis|Gaw |Neo Gundam|Heavy Gundam|Super Gundam|Crossbone|Bound Doc/i]];
+const ser=i=>{if(i.g==="SD")return"SD / BB";for(const[x,r]of RX)if(r.test(i.n))return x;return"Other Gundam series"};
+items.forEach(i=>i.s=ser(i));
+const SC={HG:"HG 1/144",MG:"MG 1/100",RG:"RG 1/144",PG:"PG 1/60",RE:"RE/100 1/100",FM:"Full Mechanics 1/100",SD:"SD",DC:"",OT:""};
+const pic=i=>{const n=i.n.replace(/\s*\((UC|AW|FC|AC|CE|BD)\)/g,"").trim(),q=/1\/|RE\/100|Full Mech|PG |SD |BD /.test(n)?n:(SC[i.g]+" "+n).trim();return"https://www.google.com/search?tbm=isch&q="+encodeURIComponent(q+" gunpla"+(i.c==="pbandai"?" Premium Bandai":i.c==="gbase"?" Gundam Base limited":""))};
+
+const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let W=LS.get("gp-watch")||{},O=LS.get("gp-own")||{},cur=LS.get("gp-cur")||"php",R=LS.get("gp-rate")||{v:0.38,t:0,est:1};
+const jp=y=>"¥"+(+y).toLocaleString(),fmt=y=>{const p="₱"+Math.round(y*R.v).toLocaleString();return cur==="jpy"?jp(y):cur==="php"?p:p+" <small>"+jp(y)+"</small>"};
+function rate(){$("rt").textContent=cur==="jpy"?"":(R.est?"Estimated rate (live rate unavailable): ":"Rate ("+R.d+"): ")+"¥1 = ₱"+R.v.toFixed(3)+". Excludes shipping, tax and fees."}
+if(Date.now()-R.t>432e5)fetch("https://open.er-api.com/v6/latest/JPY").then(r=>r.json()).then(j=>{if(j&&j.rates&&j.rates.PHP){R={v:j.rates.PHP,t:Date.now(),d:"updated "+new Date().toLocaleDateString()};LS.set("gp-rate",R);render()}}).catch(()=>{});
+const lst=n=>items.filter(i=>i.n===n).map(i=>i.p+"|"+i.c+"|"+i.$);
+const wc=()=>{$("wc").textContent=Object.keys(W).length||""};
+function tog(n){if(W[n])delete W[n];else W[n]=lst(n);LS.set("gp-watch",W);wc();render();alerts()}
+function togO(n){if(O[n])delete O[n];else O[n]=1;LS.set("gp-own",O);render();}
+function diff(){const o=[];for(const n in W){const old=W[n];lst(n).forEach(k=>{if(old.includes(k))return;const[p,c,y]=k.split("|"),pv=old.find(z=>z.startsWith(p+"|"+c+"|"));o.push(pv?"Price change: "+n+", "+qlabel(p)+" ("+CHN[c][0]+"), "+jp(pv.split("|")[2])+" to "+jp(y):"New listing: "+n+" is now in "+qlabel(p)+" ("+CHN[c][0]+") at "+jp(y))})}return o}
+function alerts(){const a=diff();$("al").innerHTML=a.length?'<div class="alert"><b>'+a.length+" update"+(a.length>1?"s":"")+" on your watchlist</b><ul>"+a.map(x=>"<li>"+esc(x)+"</li>").join("")+'</ul><button class="rs" id="ok">Dismiss</button></div>':"";if(a.length)$("ok").onclick=()=>{for(const n in W)W[n]=lst(n);LS.set("gp-watch",W);alerts()}}
+
+function chips(){
+ const c=[];
+ if(st.q.length)c.push(["q",st.q.map(qlabel).join(", ")]);
+ if(st.c.length)c.push(["c",st.c.map(k=>CHN[k][0]).join(", ")]);
+ if(st.g.length)c.push(["g",st.g.map(k=>GN[k]).join(", ")]);
+ if(st.r.length)c.push(["r",st.r.join(", ")]);
+ if(st.p.length)c.push(["p",st.p.map(k=>PR().find(x=>x[0]===k)[1]).join(", ")]);
+ if(st.nw)c.push(["nw","New only"]);
+ if(st.s)c.push(["s","Search: “"+st.s+"”"]);
+ if(st.w)c.push(["w","Watchlist only"]);
+ $("chips").innerHTML=c.length?"<span>Filtering by</span>"+c.map(x=>'<button class="chip" data-x="'+x[0]+'">'+esc(x[1])+" ×</button>").join(""):"<span>No filters, showing every kit</span>"
+}
+
+function news0(){$("nv").innerHTML='<div class="nvi"><h2>News and launch calendar</h2><p>Official headlines and exact release dates live on Bandai’s own pages. They don’t load into this tracker automatically yet.</p><div class="lk"><a href="https://en.gundam-official.com/news" target="_blank" rel="noopener">Official Gundam news</a><a href="https://global.bandai-hobby.net/en-others/schedule/" target="_blank" rel="noopener">Bandai Hobby launch schedule</a></div><h3>Jump to a resale quarter</h3><div class="qg">'+Q.map(k=>{const n=cnt(items.filter(i=>i.p===k),i=>i.c);return'<button class="qc" data-go="'+k+'"><b>'+qlabel(k)+"</b><span>"+Object.keys(CHN).map(c=>CHN[c][0]+" "+(n[c]||0)).join(", ")+"</span></button>"}).join("")+"</div></div>"}
+
+let NEWS=[];const NEWS_MANUAL=[];/* add by hand: {id:"unique",date:"2026-10-20",title:"Headline",url:"https://..."} */
+const nid=n=>n.id||n.url||n.title;
+function unseen(){const s=LS.get("gp-news-seen");return s?NEWS.filter(n=>!s.includes(nid(n))):[]}
+function markSeen(){LS.set("gp-news-seen",NEWS.map(nid).slice(0,300))}
+function nbadge(){const n=unseen().length;$("nc").textContent=n||""}
+function loadNews(){fetch("news.json",{cache:"no-store"}).then(r=>r.ok?r.json():[]).catch(()=>[]).then(a=>{NEWS=[...(Array.isArray(a)?a:[]),...NEWS_MANUAL].filter(x=>x&&x.title).sort((x,y)=>(y.date||"").localeCompare(x.date||""));if(!LS.get("gp-news-seen")&&NEWS.length)markSeen();nbadge();if(!$("nv").hidden)news()})}
+function news(){news0();const fresh=unseen(),ids=new Set(fresh.map(nid));
+ const list=NEWS.slice(0,10).map(n=>"<li><span>"+esc((n.date||"").slice(0,10))+'</span><a href="'+esc(n.url||"#")+'" target="_blank" rel="noopener noreferrer">'+esc(n.title)+"</a>"+(ids.has(nid(n))?' <i class="nw">New</i>':"")+"</li>").join("");
+ const ban=fresh.length?'<div class="alert"><b>'+fresh.length+" new post"+(fresh.length>1?"s":"")+" on Official Gundam news</b></div>":"";
+ $("nv").innerHTML=$("nv").innerHTML.replace('<div class="nvi">','<div class="nvi">'+ban).replace("<h3>Jump to","<h3>Latest official Gundam news</h3>"+(list?'<ul class="nl">'+list+"</ul>":"<p>No headlines are loaded yet. Open the official news page for the latest posts.</p>")+"<h3>Jump to");
+ if(fresh.length){markSeen();nbadge()}}
+function view(v){const k=v!=="news";if(v==="watch"){st.w=true;st.q=[];st.c=[];st.g=[];st.p=[];st.r=[];st.nw=false;st.s="";$("s").value=""}if(v==="kits")st.w=false;$("kv").hidden=!k;$("nv").hidden=k;document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===v));if(k){clr();render()}else news();scrollTo(0,0)}
+$("tabs").onclick=e=>{const b=e.target.closest("button");if(b)view(b.dataset.t)};
+$("cur").value=cur;$("cur").onchange=e=>{cur=e.target.value;LS.set("gp-cur",cur);render()};
+
+document.body.onclick=e=>{
+ const sx=e.target.closest(".star");if(sx){tog(sx.dataset.w);return}
+ const ox=e.target.closest(".own");if(ox){togO(ox.dataset.o);return}
+ const go=e.target.closest("[data-go]");if(go){st={q:[go.dataset.go],c:[],g:[],p:[],r:[],s:"",o:"",w:false,nw:false};$("s").value="";view("kits");return}
+ const cx=e.target.closest("[data-x]");
+ if(cx){
+  const k=cx.dataset.x;
+  if(k==="w"){view("kits");return}
+  if(["q","c","g","r","p"].includes(k)) st[k]=[];
+  else if(k==="nw") st.nw=false;
+  else st[k]="";
+  if(k==="s")$("s").value="";
+  clr();render();return
+ }
+ const m=e.target.closest(".more");if(m){open[m.dataset.more]=1;render();return}
+ const b=e.target.closest(".opt");
+ if(b){
+  const k=b.dataset.k, v=b.dataset.v;
+  if (k === "nw") {
+   st.nw = !!v;
+  } else {
+   if (!v) st[k] = [];
+   else {
+    const idx = st[k].indexOf(v);
+    if (idx > -1) st[k].splice(idx, 1);
+    else st[k].push(v);
+   }
+  }
+  clr();render();
+ }
+};
+
+let stime;$("s").oninput=e=>{clearTimeout(stime);stime=setTimeout(()=>{st.s=e.target.value;clr();render()},150)};
+$("o").onchange=e=>{st.o=e.target.value;clr();render()};
+$("rs").onclick=()=>{st={q:[],c:[],g:[],p:[],r:[],s:"",o:"",w:false,nw:false};$("s").value="";$("o").value="";clr();view("kits")};
+$("top").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+addEventListener("scroll",()=>$("top").classList.toggle("show",scrollY>700));
+const fl=$("fl"),mq=matchMedia("(min-width:860px)"),sync=()=>{if(mq.matches)fl.open=true};sync();mq.onchange=sync;
+wc();render();alerts();loadNews();
+</script></body></html>
