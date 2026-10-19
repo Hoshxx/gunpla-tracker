@@ -141,7 +141,7 @@ h1.bn{font-stretch:68%;font-weight:800;font-size:clamp(28px,6vw,36px);line-heigh
 
 <script type="module">
 const D=(await (await fetch("kits.txt",{cache:"no-store"})).text()).replace(/\r/g,"");
-const GN={HG:"HG",MG:"MG",RG:"RG",PG:"PG",RE:"RE/100",SD:"SD / BB",DC:"Decals",FM:"Full Mech.",OT:"Other"};
+const GN={HG:"HG",MG:"MG",RG:"RG",PG:"PG",RE:"RE/100",SD:"SD / BB",DC:"Decals",FM:"FM",OT:"Other"};
 const CHN={regular:["General resale","var(--blue)"],pbandai:["Premium Bandai","var(--red)"],gbase:["Gundam Base","var(--yel)"]};
 const PR=()=>cur==="jpy"?[["u","Under ¥2,000"],["m","¥2,000 – ¥5,000"],["o","Over ¥5,000"]]:[["u","Under ₱1,000"],["m","₱1,000 – ₱2,500"],["o","Over ₱2,500"]];
 const pb=i=>{const j=cur==="jpy",v=j?i.$:i.$*R.v,a=j?2000:1000,b=j?5000:2500;return v<a?"u":v<=b?"m":"o"};
