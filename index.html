@@ -113,7 +113,7 @@ h1.bn{font-stretch:68%;font-weight:800;font-size:clamp(28px,6vw,36px);line-heigh
 <div class="band"><i></i><i></i><i></i></div>
 <div class="hdw"><header class="hd"><a class="brand" href="./"><span class="mark"><i></i><i></i><i></i></span><h1 class="bn">Gunpla Radar</h1></a>
 <nav class="tabs" id="tabs"><button data-t="kits" aria-pressed="true">Reprint Tracker</button><button data-t="watch" aria-pressed="false">Watchlist<span id="wc" class="cnt"></span></button><button data-t="manuals" aria-pressed="false">Manuals</button><button data-t="news" aria-pressed="false">News and calendar<span id="nc" class="cnt hot"></span></button></nav></header></div>
-<div class="intro"><p>Reissues and price revisions from Bandai Hobby, grouped by quarter and sales channel. Prices are in yen, tax included.</p></div>
+<div class="intro" id="intro"><p>Reissues and price revisions from Bandai Hobby, grouped by quarter and sales channel. Prices are in yen, tax included.</p></div>
 <div class="wrap" id="kv">
 <aside><details class="flt" id="fl"><summary>Filters <span id="fs"></span></summary>
 <div class="grp"><h2>Newly Added</h2><div class="list" id="lnw"></div></div>
@@ -687,7 +687,7 @@ function nbanner(){const f=items.filter(isNew),el=$("nb");if(!f.length){el.inner
  el.innerHTML='<div class="alert"><b>'+f.length+" kit"+(f.length>1?"s":"")+" added to the resale list</b><ul>"+f.slice(0,6).map(i=>"<li>"+esc(i.n)+" ("+qlabel(i.p)+", "+CHN[i.c][0]+")</li>").join("")+(f.length>6?"<li>and "+(f.length-6)+" more</li>":"")+'</ul><button class="chip" id="nbs">Show all new kits</button> <button class="rs" id="nbd">Dismiss</button></div>';
  $("nbs").onclick=()=>{st={q:[],c:[],g:[],p:[],r:[],s:"",o:"",w:false,nw:true};$("s").value="";view("kits")};
  $("nbd").onclick=()=>{LS.set("gp-nb",last);nbanner()}}
-function view(v){const k=v==="kits"||v==="watch";if(v==="watch"){st.w=true;st.q=[];st.c=[];st.g=[];st.p=[];st.r=[];st.nw=false;st.s="";$("s").value=""}if(v==="kits")st.w=false;$("kv").hidden=!k;$("nv").hidden=v!=="news";$("mv").hidden=v!=="manuals";document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===v));if(k){clr();render()}else if(v==="news")news();else manuals();scrollTo(0,0)}
+function view(v){const k=v==="kits"||v==="watch";if(v==="watch"){st.w=true;st.q=[];st.c=[];st.g=[];st.p=[];st.r=[];st.nw=false;st.s="";$("s").value=""}if(v==="kits")st.w=false;$("kv").hidden=!k;$("intro").hidden=!k;$("nv").hidden=v!=="news";$("mv").hidden=v!=="manuals";document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===v));if(k){clr();render()}else if(v==="news")news();else manuals();scrollTo(0,0)}
 $("tabs").onclick=e=>{const b=e.target.closest("button");if(b)view(b.dataset.t)};
 $("cur").value=cur;$("cur").onchange=e=>{cur=e.target.value;LS.set("gp-cur",cur);render()};
 
