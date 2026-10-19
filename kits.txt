@@ -82,6 +82,7 @@ OT Vehicle Model Razor Crest|1738
 OT Pokémon Plamo Collection 05 Select Series Ho-Oh|1100
 OT Pokémon Plamo Collection 39 Select Series Solgaleo|1210
 OT Pokémon Plamo Collection 40 Select Series Lunala|1210
+
 @2026-Q3|pbandai
 HG Dortless|1540
 MG Stark Jegan|7920
@@ -132,12 +133,14 @@ HG Johnny Ridden’s Gelgoog|2640
 MG Johnny Ridden’s Gelgoog|6930
 MG Geara Doga (Rezun Schneider Custom)|6050
 HG Zeta Gundam (Wave Shooter)|2420
+
 @2026-Q3|gbase
 HG Gundam Base Ltd. Narrative Gundam B-Packs|3740
 HG Gundam Base Ltd. Narrative Gundam C-Packs [Titanium Finish]|6820
 HG Gundam AGE II Magnum [Dive into Dimension Clear] (BD)|2640
 HG Narrative Gundam C-Packs [Clear Color]|2970
 HG Narrative Gundam C-Packs [Awakening Image Color]|2970
+
 @2026-Q4|regular
 HG Gundam Astray Red Frame|1650
 HG Gundam Astray Blue Frame|1650
@@ -232,6 +235,50 @@ OT Hyper Function LBX Achilles|3630
 OT Hyper Function LBX Ji Emperor|3630
 OT Hyper Function LBX Odin|4180
 OT Hyper Function LBX Lucifer|3630
+HG Dom / Rick Dom|2090
+HG Rozen Zulu (Episode 7 Ver.)|3300
+HG Schuzrum Galluss|2860
+HG Gundam GP01 Full Vernier|1980
+HG Gundam AGE-FX|2090
+HG Nemo (Unicorn Desert Ver.)|1870
+MG Gundam Heavyarms (EW)|4620
+HG Z'Gok|1100
+HG Zeta Gundam|2750
+MG Unicorn Gundam|6160
+HG Unicorn Gundam (Destroy Mode)|2200
+MG Sword Impulse Gundam|5390
+MG Infinite Justice Gundam|5940
+HG Acguy|1760
+HG Gundam NT-1 "Alex"|1980
+HG Z'Gok & Cavaliere Aifrid Set|6490
+HG Gaplant|2640
+MG Eclipse Gundam|5500
+HG Xi Gundam|6600
+HG Zaku II (Revive)|1760
+HG Wodom Pod|2530
+HG Core Gundam (Real Type Color) & Marsfour Unit|1540
+HG Marsfour Weapons|660
+HG Penelope|7700
+RG Nu Gundam|4950
+HG Gundam The Origin Char's Zaku II (Red Comet Ver.)|2200
+HG Gundam The Origin Zaku II Type C-6/R6|2200
+MG Ex-S Gundam / S Gundam|14080
+RG Full Armor Unicorn Gundam|6270
+HG Dijeh|2090
+HG Sinanju Stein (Narrative Ver.)|3080
+MG Zeta Gundam Ver.Ka|7150
+MG ZZ Gundam Ver.Ka|7150
+HG Reginlaze Julia|1760
+MG Unicorn Gundam 02 Banshee Ver.Ka|6160
+RG Gundam Astray Gold Frame Amatsu Mina|3850
+HG Gundam G-Self (Perfect Pack)|2970
+HG Char's Z'Gok|1100
+HG White Gundam|2420
+MG Gundam Barbatos Lupus|7150
+HG Gyanko (Exav Custom)|2860
+HG Red Gundam|2750
+HG Gun Cannon|2200
+
 @2026-Q4|pbandai
 HG Gundam Gemini 01|2420
 HG Gundam Gemini 01 Assault Booster & High-Mobility Unit Expansion Set|1980
@@ -257,11 +304,13 @@ HG 1/72 Dainbine|4180
 MG Slash ZAKU Phantom (Yzak Joule)|5390
 MG Gunner/Slash/Blaze Wizard Set|4290
 MG Blaze ZAKU Phantom / Blaze ZAKU Warrior|5390
+
 @2026-Q4|gbase
 RG Gundam Base Ltd. Sinanju [Metallic Gloss Injection]|5500
 RG Sinanju [Clear Color]|5280
 RG Crossbone Gundam X1 [Titanium Finish]|7260
 RG Crossbone Gundam X1 [Clear Color]|3410
+
 @2027-Q1|regular
 HG Overflag|1650
 HG Ahead (Mr. Bushido Custom)|1650
@@ -374,6 +423,7 @@ OT Figure-rise Standard Kamen Rider W Cyclone Joker|3740
 OT Figure-rise Standard Amplified Wargreymon|4620
 OT Pokémon Plamo Collection 27 Select Series Black Kyurem|1210
 OT Pokémon Plamo Collection 28 Select Series White Kyurem|1210
+
 @2027-Q1|pbandai
 MG Yuma Lightning’s Zaku II|5500
 MG Crossbone Gundam X3 Ver.Ka|5280
@@ -403,6 +453,9 @@ FM Full Mechanics Aile Calamity Gundam|6050
 HG Ifrit (UC)|2530
 HG Ifrit Kai (UC)|2200
 HG Gundam Pixy|2530
+FM 1/100 Sword Calamity Gundam|6050
+FM 1/100 Boost Raider Gundam|6820
+
 @2027-Q1|gbase
 DC Gundam Decal Gundam Base Ltd. HG Other Centuries Emblem Set 1|770
 DC Gundam Decal Gundam Base Ltd. HG Universal Century Emblem Set 1|770
@@ -415,18 +468,11 @@ FM Full Mechanics Calamity Gundam [Clear Color]|5720
 
 # Added Oct 19, 2026 (Gundam Base Online Shop reservations, shipping Dec 2026)
 @2026-Q4|pbandai|2026-10-19
-HG Dreissen (UC)|2640
 HG Doven Wolf (UC)|2640
 HG Black Knight Squad Rud-Ro (3-Unit Set)|8910
 HG Gyan Strom (Hilda Haken Custom)|3190
 HG Gelgoog Menace|3190
 RG Akatsuki Gundam Shiranui Pack & HG Zeus Silhouette Connection Parts|1380
 MG Blaze Zaku Phantom (Rey Za Burrel Custom)|5390
-MG Gunner/Slash/Blaze Wizard Set|4290
 MG Slash Zaku Phantom (Yzak Jule Custom)|5390
 HG Meteor Unit|7150
-
-@2027-Q1|pbandai
-FM 1/100 Aile Calamity Gundam|6050
-FM 1/100 Sword Calamity Gundam|6050
-FM 1/100 Boost Raider Gundam|6820
