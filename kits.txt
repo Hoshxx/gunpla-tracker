@@ -399,7 +399,7 @@ RE RE/100 Gun-EZ Ground Type|4400
 RE RE/100 Gunblaster|4400
 MG V2 Assault Buster Gundam Ver.Ka|8800
 HG Second V|2420
-FM Full Mechanics Aile Calamity Gundam|6050
+FM Aile Calamity Gundam|6050
 HG Ifrit (UC)|2530
 HG Ifrit Kai (UC)|2200
 HG Gundam Pixy|2530
@@ -411,7 +411,7 @@ DC Gundam Decal RG Sazabi SP Ver.|1320
 HG Vazam [Clear Color]|2200
 HG Byarlant [Clear Color]|3410
 HG Garbaldi-β [Clear Color]|2200
-FM Full Mechanics Calamity Gundam [Clear Color]|5720
+FM Calamity Gundam [Clear Color]|5720
 
 # Added Oct 19, 2026 (reservations, shipping Dec 2026)
 @2026-Q4|pbandai|2026-10-19
