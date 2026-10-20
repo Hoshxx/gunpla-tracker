@@ -474,3 +474,9 @@ FM 1/100 Boost Raider Gundam|6820
 # HG Gyanko (Exav Custom)|2860
 # HG Red Gundam|2750
 # HG Gun Cannon|2200
+
+# Added Oct 20, 2026 (P-Bandai pre-orders, shipping Jan / Mar 2027)
+@2027-Q1|pbandai|2026-10-20
+HG Eldora Dotress|1650
+HG Eldora Windam|2310
+MG Gundam Astray Noir|5940
