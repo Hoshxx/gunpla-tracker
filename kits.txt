@@ -480,3 +480,8 @@ FM 1/100 Boost Raider Gundam|6820
 HG Eldora Dotress|1650
 HG Eldora Windam|2310
 MG Gundam Astray Noir|5940
+
+# Added Oct 22, 2026 (P-Bandai pre-orders, shipping March 2027 - start time pending P-Bandai site maintenance)
+@2027-Q1|pbandai|2026-10-22
+MG Hyaku-Shiki Kai|11770
+MG Superbia GN-X|6050
