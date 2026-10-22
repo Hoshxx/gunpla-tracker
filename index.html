@@ -278,8 +278,8 @@ function mres(){const el=$("mr");if(!el||!MAN)return;const q=MQ.trim(),t=q.split
  if(t.length){list=[];for(let n=t.length;n>=1;n--){const m=mk(t.slice(0,n).join(" "));list=MAN.filter(x=>m(x.t));if(list.length){used=t.slice(0,n).join(" ");break}}}
  $("mc").textContent=!MAN.length?"The manual index is still being built. Try again later, or search on Bandai’s site.":list.length?list.length+" manual"+(list.length>1?"s":"")+(used!==q?" for “"+used+"” (no match for the full search)":""):"No manuals found. Not every kit has an online manual yet.";
  el.innerHTML=list.slice(0,60).map(x=>(()=>{const z=splitT(x.t);return'<div class="mrow"><span class="n"><b class="en">'+esc(z.en)+'</b>'+(z.jp?'<br><span class="jp">'+esc(z.jp)+'</span>':"")+'</span>'})()+'<span><span class="d">'+esc(x.d||"")+'</span> <a class="ph" href="https://manual.bandai-hobby.net/pdf/'+x.id+'.pdf" target="_blank" rel="noopener noreferrer">Manual (PDF)</a> <a class="ph" href="https://manual.bandai-hobby.net/menus/detail/'+x.id+'" target="_blank" rel="noopener noreferrer">Bandai page</a></span></div>').join("")+(list.length>60?'<p class="note">Showing the first 60. Add more words to narrow it down.</p>':"")}
-function nbanner(){const f=items.filter(isNew),el=$("nb");if(!f.length){el.innerHTML="";return}
- const last=f.reduce((m,i)=>i.a>m?i.a:m,"");if((LS.get("gp-nb")||"")>=last){el.innerHTML="";return}
+function nbanner(){const seen=LS.get("gp-nb")||"",f=items.filter(i=>isNew(i)&&i.a>seen),el=$("nb");if(!f.length){el.innerHTML="";return}
+ const last=f.reduce((m,i)=>i.a>m?i.a:m,"");
  el.innerHTML='<div class="alert"><b>'+f.length+" kit"+(f.length>1?"s":"")+" added to the resale list</b><ul>"+f.slice(0,6).map(i=>"<li>"+esc(i.n)+" ("+qlabel(i.p)+", "+CHN[i.c][0]+")</li>").join("")+(f.length>6?"<li>and "+(f.length-6)+" more</li>":"")+'</ul><button class="chip" id="nbs">Show all new kits</button> <button class="rs" id="nbd">Dismiss</button></div>';
  $("nbs").onclick=()=>{st={q:[],c:[],g:[],p:[],r:[],s:"",o:"",w:false,nw:true};$("s").value="";view("kits")};
  $("nbd").onclick=()=>{LS.set("gp-nb",last);nbanner()}}
