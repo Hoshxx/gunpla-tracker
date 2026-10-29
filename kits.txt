@@ -485,3 +485,14 @@ MG Gundam Astray Noir|5940
 @2027-Q1|pbandai|2026-10-22
 MG Hyaku-Shiki Kai|11770
 MG Superbia GN-X|6050
+
+# Added Oct 28, 2026 (General retail release dropping Oct 31, 2026)
+@2026-Q4|regular|2026-10-28
+HG Gundam Virsago|3190
+
+# Added Oct 29, 2026 (P-Bandai SEED pre-orders, shipping Jan – Mar 2027)
+@2027-Q1|pbandai|2026-10-29
+MG Providence Gundam [Special Coating]|10480
+MG Freedom Gundam Ver.2.0 (Full Burst Mode Special Coating Ver.)|11770
+HG Destiny Gundam Spec II (Final Battle Image Color)|2970
+HG Strike Freedom Gundam Type II & Wings of Light Effect Set|4620
