@@ -496,3 +496,7 @@ MG Providence Gundam [Special Coating]|10480
 MG Freedom Gundam Ver.2.0 (Full Burst Mode Special Coating Ver.)|11770
 HG Destiny Gundam Spec II (Final Battle Image Color)|2970
 HG Strike Freedom Gundam Type II & Wings of Light Effect Set|4620
+
+# Added Oct 30, 2026 (P-Bandai reissue, shipping Feb 2027)
+@2027-Q1|pbandai|2026-10-30
+HG Advanced GN-X (Deborah Custom)|2420
