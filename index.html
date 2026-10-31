@@ -133,8 +133,32 @@ h1.bn{font-stretch:68%;font-weight:800;font-size:clamp(28px,6vw,36px);line-heigh
 <div id="out"></div>
 </main></div>
 <section id="nv" hidden></section>
-<section id="rv" hidden></section>
 <section id="mv" hidden></section>
+
+<!-- Releases View -->
+<section id="rv" hidden>
+  <div class="nvi" style="padding-bottom:12px">
+    <h2>Releases and reprints</h2>
+    <p>Kits that have gone on sale or been reprinted, newest first. When a kit is also in the tracker, it gets a matching tag there.</p>
+  </div>
+  <div class="wrap">
+    <aside>
+      <details class="flt" id="r-fl">
+        <summary>Filters <span id="r-fs"></span></summary>
+        <div class="grp"><h2>Month</h2><div class="list" id="r-lm"></div></div>
+        <div class="grp"><h2>Sales channel</h2><div class="list" id="r-lc"></div></div>
+        <div class="grp"><h2>Grade</h2><div class="list" id="r-lg"></div></div>
+      </details>
+    </aside>
+    <main>
+      <div class="bar"><input id="rq" type="search" placeholder="Search releases" aria-label="Search releases"></div>
+      <div class="chips" id="r-chips"></div>
+      <div class="sum"><b id="rc"></b><button class="rs" id="r-rs">Clear all filters</button></div>
+      <div id="rr"></div>
+    </main>
+  </div>
+</section>
+
 <button id="top" class="top">Top</button>
 <footer>
 <p><b>Unofficial fan project.</b> Not affiliated with or endorsed by Bandai Spirits, Sunrise or Sotsu. Gundam and Gunpla are trademarks of their respective owners.</p>
@@ -159,6 +183,8 @@ const now=new Date(),cq=now.getFullYear()+"-Q"+(Math.floor(now.getMonth()/3)+1);
 const dq=Q.includes(cq)?cq:Q[Q.length-1];
 
 let st={q:[dq],c:[],g:[],p:[],s:"",o:"",w:false,nw:false,r:[]};
+let rst={m:[],c:[],g:[],s:""};
+
 const $=id=>document.getElementById(id),esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 const isNew=i=>i.a>"2026-10-18"&&Date.now()-new Date(i.a)<12096e5;
 const AL=[["zaku","ザク"],["gundam","ガンダム"],["gm","jim","ジム"],["dom","ドム"],["gelgoog","gerugugu","ゲルググ"],["z'gok","zgok","zock","ズゴック"],["gouf","guff","グフ"],["unicorn","ユニコーン"],["strike","ストライク"],["wing","ウイング","ウィング"],["zeta","ゼータ"],["char","sha","シャア"],["sazabi","サザビー"],["nightingale","ナイチンゲール"],["sinanju","シナンジュ"],["crossbone","クロスボーン"],["astray","アストレイ"],["destiny","デスティニー"],["freedom","フリーダム"],["aegis","イージス"],["dynames","デュナメス"],["kimaris","キマリス"],["barbatos","バルバトス"],["graze","グレイズ"],["hyaku-shiki","hyakushiki","百式"],["zeong","ジオング"],["psyco","サイコ"],["bawoo","baow","バウ"],["geara","gira","ギラ"],["doga","ドーガ"],["jagd","yakt","ヤクト"],["rezel","rizel","リゼル"],["jesta","ジェスタ"],["gaplant","ギャプラン"],["marasai","マラサイ"],["methuss","metus","メタス"],["tropen","トローペン"],["heavyarms","ヘビーアームズ"],["turn a","∀","ターンa"],["guncannon","ガンキャノン"],["guntank","ガンタンク"],["gublow","グラブロ"],["musai","ムサイ"],["white base","ホワイトベース"],["argama","アーガマ"],["pixy","ピクシー"],["ifrit","イフリート"],["ball","ボール"],["kshatriya","クシャトリヤ"],["narrative","ナラティブ"],["delta","デルタ"],["epyon","エピオン"],["exia","エクシア"],["sd","sdw","bb"],["decal","デカール"]];
@@ -293,14 +319,47 @@ function nbanner(){const seen=LS.get("gp-nb")||"",f=items.filter(i=>isNew(i)&&i.
  el.innerHTML='<div class="alert"><b>'+f.length+" kit"+(f.length>1?"s":"")+" added to the resale list</b><ul>"+f.slice(0,6).map(i=>"<li>"+esc(i.n)+" ("+qlabel(i.p)+", "+CHN[i.c][0]+")</li>").join("")+(f.length>6?"<li>and "+(f.length-6)+" more</li>":"")+'</ul><button class="chip" id="nbs">Show all new kits</button> <button class="rs" id="nbd">Dismiss</button></div>';
  $("nbs").onclick=()=>{st={q:[],c:[],g:[],p:[],r:[],s:"",o:"",w:false,nw:true};$("s").value="";view("kits")};
  $("nbd").onclick=()=>{LS.set("gp-nb",last);nbanner()}}
-let RQ="";
-function releases(){$("rv").innerHTML='<div class="nvi"><h2>Releases and reprints</h2><p>Kits that have gone on sale or been reprinted, newest first. When a kit is also in the tracker, it gets a matching tag there.</p><div class="bar"><input id="rq" type="search" placeholder="Search releases" aria-label="Search releases"></div><div class="sum"><b id="rc"></b></div><div id="rr"></div></div>';
- const inp=$("rq");inp.value=RQ;inp.oninput=()=>{RQ=inp.value;rres()};rres()}
+
+function rf(skip){
+ const m=mk(rst.s);
+ return rels.filter(r=>{
+  const mo=r.d.slice(0,7);
+  return (skip==="m"||!rst.m.length||rst.m.includes(mo))&&
+         (skip==="c"||!rst.c.length||rst.c.includes(r.c))&&
+         (skip==="g"||!rst.g.length||rst.g.includes(r.g))&&
+         m(r.n);
+ });
+}
 
 function rres(){
- const m=mk(RQ),l=rels.filter(r=>m(r.n)).sort((a,b)=>b.d.localeCompare(a.d));
- $("rc").textContent=!rels.length?"No releases listed yet. Add them to releases.txt.":l.length+" release"+(l.length===1?"":"s");
- let h="",last="";
+ const am = cnt(rf("m"), r => r.d.slice(0,7));
+ const ac = cnt(rf("c"), r => r.c);
+ const ag = cnt(rf("g"), r => r.g);
+ 
+ const months = [...new Set(rels.map(r=>r.d.slice(0,7)))].sort((a,b)=>b.localeCompare(a));
+ $("r-lm").innerHTML = opt("rm","","All months",rf("m").length,!rst.m.length) + months.map(k=>opt("rm",k,new Date(k+"-01T00:00:00").toLocaleDateString("en",{month:"long",year:"numeric"}),am[k]||0,rst.m.includes(k))).join("");
+ 
+ $("r-lc").innerHTML = opt("rc","","All channels",rf("c").length,!rst.c.length) + Object.keys(CHN).map(k=>opt("rc",k,CHN[k][0],ac[k]||0,rst.c.includes(k))).join("");
+ 
+ const rgs = [...new Set(rels.map(r=>r.g))].filter(Boolean);
+ $("r-lg").innerHTML = opt("rg","","All grades",rf("g").length,!rst.g.length) + Object.keys(GN).filter(k=>ag[k]||rst.g.includes(k)).map(k=>opt("rg",k,GN[k],ag[k]||0,rst.g.includes(k),"var(--g-"+k+")")).join("");
+ 
+ const na = rst.m.length + rst.c.length + rst.g.length;
+ $("r-fs").textContent = na ? na+" selected" : "None selected";
+ 
+ const c=[];
+ if(rst.m.length) c.push(["rm",rst.m.map(k=>new Date(k+"-01T00:00:00").toLocaleDateString("en",{month:"long",year:"numeric"})).join(", ")]);
+ if(rst.c.length) c.push(["rc",rst.c.map(k=>CHN[k][0]).join(", ")]);
+ if(rst.g.length) c.push(["rg",rst.g.map(k=>GN[k]).join(", ")]);
+ if(rst.s) c.push(["rs","Search: “"+rst.s+"”"]);
+ $("r-chips").innerHTML = c.length ? "<span>Filtering by</span>"+c.map(x=>'<button class="chip" data-x="'+x[0]+'">'+esc(x[1])+" ×</button>").join("") : "<span>No filters, showing every release</span>";
+
+ const l = rf().sort((a,b)=>b.d.localeCompare(a.d));
+ $("rc").textContent = !l.length ? "No releases found." : "Showing "+l.length+" of "+rels.length+" release"+(rels.length===1?"":"s");
+ 
+ if(!l.length){ $("rr").innerHTML='<div class="empty"><p>No releases match your search or filters.</p></div>'; return; }
+ 
+ let h="", last="";
  l.forEach(r=>{
   const mo=new Date(r.d+"T00:00:00").toLocaleDateString("en",{month:"long",year:"numeric"});
   if(mo!==last){
@@ -327,9 +386,15 @@ function rres(){
  $("rr").innerHTML=h;
 }
 
+function releases(){ rres(); }
+
 function view(v){const k=v==="kits"||v==="watch";if(v==="watch"){st.w=true;st.q=[];st.c=[];st.g=[];st.p=[];st.r=[];st.nw=false;st.s="";$("s").value=""}if(v==="kits")st.w=false;$("kv").hidden=!k;$("intro").hidden=!k;$("nv").hidden=v!=="news";$("mv").hidden=v!=="manuals";$("rv").hidden=v!=="releases";document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===v));if(k){clr();render()}else if(v==="news")news();else if(v==="releases")releases();else manuals();scrollTo(0,0)}
 $("tabs").onclick=e=>{const b=e.target.closest("button");if(b)view(b.dataset.t)};
-$("cur").value=cur;$("cur").onchange=e=>{cur=e.target.value;LS.set("gp-cur",cur);render()};
+$("cur").value=cur;$("cur").onchange=e=>{cur=e.target.value;LS.set("gp-cur",cur);render();rres()};
+
+let rtime;
+$("rq").oninput=e=>{clearTimeout(rtime);rtime=setTimeout(()=>{rst.s=e.target.value;rres()},150)};
+$("r-rs").onclick=()=>{rst={m:[],c:[],g:[],s:""};$("rq").value="";rres()};
 
 document.body.onclick=e=>{
  const sx=e.target.closest(".star");if(sx){tog(sx.dataset.w);return}
@@ -344,6 +409,11 @@ document.body.onclick=e=>{
   if(k==="w"){view("kits");return}
   if(["q","c","g","r","p"].includes(k)) st[k]=[];
   else if(k==="nw") st.nw=false;
+  else if(k.startsWith("r")) {
+      if (k === "rs") { rst.s = ""; $("rq").value = ""; }
+      else rst[k.slice(1)] = [];
+      rres(); return;
+  }
   else st[k]="";
   if(k==="s")$("s").value="";
   clr();render();return
@@ -355,6 +425,15 @@ document.body.onclick=e=>{
   const k=b.dataset.k, v=b.dataset.v;
   if (k === "nw") {
    st.nw = !!v;
+  } else if (k === "rm" || k === "rc" || k === "rg") {
+   const key = k.slice(1);
+   if (!v) rst[key] = [];
+   else {
+    const idx = rst[key].indexOf(v);
+    if (idx > -1) rst[key].splice(idx, 1);
+    else rst[key].push(v);
+   }
+   rres(); return;
   } else {
    if (!v) st[k] = [];
    else {
@@ -372,6 +451,6 @@ $("o").onchange=e=>{st.o=e.target.value;clr();render()};
 $("rs").onclick=()=>{st={q:[],c:[],g:[],p:[],r:[],s:"",o:"",w:false,nw:false};$("s").value="";$("o").value="";clr();view("kits")};
 $("top").onclick=()=>scrollTo({top:0,behavior:"smooth"});
 addEventListener("scroll",()=>$("top").classList.toggle("show",scrollY>700));
-const fl=$("fl"),mq=matchMedia("(min-width:860px)"),sync=()=>{if(mq.matches)fl.open=true};sync();mq.onchange=sync;
-wc();render();alerts();loadNews();nbanner();
+const fl=$("fl"), rfl=$("r-fl"), mq=matchMedia("(min-width:860px)"), sync=()=>{if(mq.matches){fl.open=true; rfl.open=true;}};sync();mq.onchange=sync;
+wc();render();rres();alerts();loadNews();nbanner();
 </script></body></html>
