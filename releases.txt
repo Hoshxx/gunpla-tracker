@@ -1,0 +1,10 @@
+# Gunpla Radar releases and reprints. One kit per line.
+# Header line:  @release date|channel|label     e.g.  @2026-12-12|pbandai|Reprinted
+#   release date: YYYY-MM-DD (required)
+#   channel: regular, pbandai or gbase (optional, leave empty to match any channel)
+#   label: the tag to show, e.g. Released, Reprinted, Restocked (optional, default Released)
+# Kit line:  GRADE Name       optional price:  GRADE Name|price
+#   The name must match the one in kits.txt (brackets like (UC) are ignored).
+#   Using the grade code (HG, MG, RG...) keeps HG and RG kits with the same name apart.
+# Kits that are not in kits.txt still show on the Releases page, marked "not in the tracker".
+# Lines starting with # and blank lines are ignored.
