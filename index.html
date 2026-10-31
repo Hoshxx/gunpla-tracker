@@ -311,7 +311,7 @@ function rres(){
   const gc = r.g ? "var(--g-"+r.g+")" : "var(--mut)";
   const gn = r.g ? GN[r.g] : "OT";
   const cname = r.c && CHN[r.c] ? CHN[r.c][0] : r.c;
-  const unlisted = k ? "" : "Unlisted";
+  const unlisted = k ? "" : "Not in tracker";
   const subtitle = [cname, unlisted].filter(Boolean).join(" • ");
   
   h+='<div class="it">';
