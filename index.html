@@ -106,7 +106,6 @@ h1.bn{font-stretch:68%;font-weight:800;font-size:clamp(28px,6vw,36px);line-heigh
 .hd .tabs{padding:0;margin:0;max-width:none;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
 .hd .tabs button{white-space:nowrap;padding:10px 0 12px;margin-bottom:-1px}
 .intro{max-width:1100px;margin:0 auto;padding:22px 20px 24px}.intro p{max-width:60ch;margin:0;color:var(--mut)}
-.mrow{display:flex;gap:6px 14px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid var(--rule)}.mrow .n{flex:1 1 320px;min-width:0;overflow-wrap:anywhere}.mrow .d{color:var(--mut);font-size:13px}.mrow .en{font-weight:600}.mrow .jp{color:var(--mut);font-size:13px}.mrow .ph{margin:0}
 .rl{font-style:normal;font-size:11px;font-weight:700;background:var(--g-HG);color:#fff;padding:1px 6px;border-radius:2px;margin-left:6px;white-space:nowrap}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head><body>
@@ -232,8 +231,8 @@ const RX=[["Non-Gundam",/Pok[eé]mon|Keroro|LBX|Figure-rise|Vehicle Model|C-3PO|
 const ser=i=>{if(i.g==="SD")return"SD / BB";for(const[x,r]of RX)if(r.test(i.n))return x;return"Other Gundam series"};
 items.forEach(i=>i.s=ser(i));
 const nk=n=>n.toLowerCase().replace(/\([^)]*\)/g,"").replace(/[^a-z0-9\u3040-\u9fff]+/g,""),qOf=d=>d.slice(0,4)+"-Q"+(Math.floor((+d.slice(5,7)-1)/3)+1),md=d=>new Date(d+"T00:00:00").toLocaleDateString("en",{month:"short",day:"numeric"});
-let rels=[],rd="",rc="",rlab="Released";
-RT.split("\n").filter(l=>l.trim()&&l[0]!=="#").forEach(l=>{if(l[0]==="@"){[rd,rc,rlab]=l.slice(1).split("|");rlab=(rlab||"").trim()||"Released";return}
+let rels=[],rd="",rc="",rlab="Reprinted";
+RT.split("\n").filter(l=>l.trim()&&l[0]!=="#").forEach(l=>{if(l[0]==="@"){[rd,rc,rlab]=l.slice(1).split("|");rlab=(rlab||"").trim()||"Reprinted";return}
  const k=l.lastIndexOf("|"),hp=k>-1&&/^\s*\d+\s*$/.test(l.slice(k+1)),h=(hp?l.slice(0,k):l).trim(),sp=h.indexOf(" "),kg=sp>0&&GN[h.slice(0,sp)];
  if(/^\d{4}-\d{2}-\d{2}$/.test((rd||"").trim()))rels.push({d:rd.trim(),c:(rc||"").trim(),l:rlab,g:kg?h.slice(0,sp):"",n:kg?h.slice(sp+1).trim():h,$:hp?+l.slice(k+1):0,m:null})});
 rels.sort((a,b)=>a.d.localeCompare(b.d)).forEach(r=>{const c=items.filter(i=>nk(i.n)===nk(r.n)&&(!r.g||i.g===r.g)&&(!r.c||i.c===r.c));if(!c.length)return;const q=qOf(r.d);r.m=c.find(i=>i.p===q)||c.filter(i=>i.p<=q).sort((a,b)=>b.p.localeCompare(a.p))[0]||c.sort((a,b)=>a.p.localeCompare(b.p))[0];r.m.rel=r});
@@ -297,19 +296,47 @@ function nbanner(){const seen=LS.get("gp-nb")||"",f=items.filter(i=>isNew(i)&&i.
 let RQ="";
 function releases(){$("rv").innerHTML='<div class="nvi"><h2>Releases and reprints</h2><p>Kits that have gone on sale or been reprinted, newest first. When a kit is also in the tracker, it gets a matching tag there.</p><div class="bar"><input id="rq" type="search" placeholder="Search releases" aria-label="Search releases"></div><div class="sum"><b id="rc"></b></div><div id="rr"></div></div>';
  const inp=$("rq");inp.value=RQ;inp.oninput=()=>{RQ=inp.value;rres()};rres()}
-function rres(){const m=mk(RQ),l=rels.filter(r=>m(r.n)).sort((a,b)=>b.d.localeCompare(a.d));
+
+function rres(){
+ const m=mk(RQ),l=rels.filter(r=>m(r.n)).sort((a,b)=>b.d.localeCompare(a.d));
  $("rc").textContent=!rels.length?"No releases listed yet. Add them to releases.txt.":l.length+" release"+(l.length===1?"":"s");
- let h="",last="";l.forEach(r=>{const mo=new Date(r.d+"T00:00:00").toLocaleDateString("en",{month:"long",year:"numeric"});if(mo!==last){h+='<div class="sec" style="--c:var(--ink)"><b>'+mo+"</b></div>";last=mo}
-  const k=r.m,pr=r.$||(k?k.$:0);
-  h+='<div class="mrow"><span class="n"><b class="en">'+esc(r.n)+'</b><br><span class="jp">'+[r.g?GN[r.g]:"",r.c?CHN[r.c]?CHN[r.c][0]:r.c:"",k?"":"not in the tracker"].filter(Boolean).join(", ")+'</span></span><span><span class="d">'+md(r.d)+'</span> <i class="rl">'+esc(r.l)+"</i> "+(pr?"<b>"+fmt(pr)+"</b> ":"")+(k?'<a class="ph" href="#" data-fs="'+esc(r.n)+'">Show in tracker</a>':"")+"</span></div>"});
- $("rr").innerHTML=h}
+ let h="",last="";
+ l.forEach(r=>{
+  const mo=new Date(r.d+"T00:00:00").toLocaleDateString("en",{month:"long",year:"numeric"});
+  if(mo!==last){
+   h+='<div class="sec" style="--c:var(--ink)"><b>'+mo+'</b><span>'+l.filter(x=>new Date(x.d+"T00:00:00").toLocaleDateString("en",{month:"long",year:"numeric"})===mo).length+' kits</span></div>';
+   last=mo;
+  }
+  const k=r.m, pr=r.$||(k?k.$:0);
+  const gc = r.g ? "var(--g-"+r.g+")" : "var(--mut)";
+  const gn = r.g ? GN[r.g] : "OT";
+  const cname = r.c && CHN[r.c] ? CHN[r.c][0] : r.c;
+  const unlisted = k ? "" : "Unlisted";
+  const subtitle = [cname, unlisted].filter(Boolean).join(" • ");
+  
+  h+='<div class="it">';
+  h+='<span class="g" style="--gc:'+gc+'">'+gn+'</span>';
+  h+='<span class="n">'+esc(r.n)+' <i class="rl">'+esc(r.l)+' '+md(r.d)+'</i>';
+  if(subtitle) h+='<br><small style="color:var(--mut);font-weight:600">'+subtitle+'</small>';
+  h+='</span>';
+  h+='<div class="acts">';
+  if(pr) h+='<span class="p">'+fmt(pr)+'</span>';
+  if(k) h+='<button class="own" style="background:transparent;border:1px solid var(--rule);color:var(--mut)" data-fs="'+esc(r.n)+'">In tracker</button>';
+  h+='</div></div>';
+ });
+ $("rr").innerHTML=h;
+}
+
 function view(v){const k=v==="kits"||v==="watch";if(v==="watch"){st.w=true;st.q=[];st.c=[];st.g=[];st.p=[];st.r=[];st.nw=false;st.s="";$("s").value=""}if(v==="kits")st.w=false;$("kv").hidden=!k;$("intro").hidden=!k;$("nv").hidden=v!=="news";$("mv").hidden=v!=="manuals";$("rv").hidden=v!=="releases";document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===v));if(k){clr();render()}else if(v==="news")news();else if(v==="releases")releases();else manuals();scrollTo(0,0)}
 $("tabs").onclick=e=>{const b=e.target.closest("button");if(b)view(b.dataset.t)};
 $("cur").value=cur;$("cur").onchange=e=>{cur=e.target.value;LS.set("gp-cur",cur);render()};
 
 document.body.onclick=e=>{
  const sx=e.target.closest(".star");if(sx){tog(sx.dataset.w);return}
- const ox=e.target.closest(".own");if(ox){togO(ox.dataset.o);return}
+ const ox=e.target.closest(".own");if(ox){
+  if(e.target.dataset.fs){e.preventDefault();st={q:[],c:[],g:[],p:[],r:[],s:e.target.dataset.fs,o:"",w:false,nw:false};$("s").value=e.target.dataset.fs;view("kits");return}
+  togO(ox.dataset.o);return
+ }
  const mm=e.target.closest(".man");if(mm){e.preventDefault();MQ=mquery(mm.dataset.g,mm.dataset.m);view("manuals");return}const go=e.target.closest("[data-go]");if(go){st={q:[go.dataset.go],c:[],g:[],p:[],r:[],s:"",o:"",w:false,nw:false};$("s").value="";view("kits");return}
  const cx=e.target.closest("[data-x]");
  if(cx){
@@ -322,7 +349,6 @@ document.body.onclick=e=>{
   clr();render();return
  }
  const rb=e.target.closest(".opt[data-k=rl]");if(rb){st.rl=st.rl===rb.dataset.v?"":rb.dataset.v;clr();render();return}
- const fsb=e.target.closest("[data-fs]");if(fsb){e.preventDefault();st={q:[],c:[],g:[],p:[],r:[],s:fsb.dataset.fs,o:"",w:false,nw:false};$("s").value=fsb.dataset.fs;view("kits");return}
  const m=e.target.closest(".more");if(m){open[m.dataset.more]=1;render();return}
  const b=e.target.closest(".opt");
  if(b){
