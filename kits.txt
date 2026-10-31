@@ -32,21 +32,21 @@ MG Hyaku-Shiki + Ballute System|4950
 MG Gundam Mk-II Ver.2.0 Titans|4400
 MG GX-9900 Gundam X|4950
 RG RX-178 Gundam Mk-II Titans Spec|3080
-OT 1/100 Gundam X|2090
-OT 1/100 Gundam Airmaster|2090
-OT 1/100 Gundam Leopard|2090
-OT 1/100 Gundam X Divider|2090
+NG 1/100 Gundam X|2090
+NG 1/100 Gundam Airmaster|2090
+NG 1/100 Gundam Leopard|2090
+NG 1/100 Gundam X Divider|2090
 PG PG 1/60 RX-0 Unicorn Gundam|24200
 PG PG 1/60 RX-0 Unicorn Gundam LED Unit|14300
-OT 1/48 Mega Size Model MS-06S Char’s Zaku|9680
+Mega 1/48 Mega Size Model MS-06S Char’s Zaku|9680
 RE RE/100 Vigna Ghina|4290
-OT 1/100 G-Cannon|1210
-OT 1/100 Guntank R-44|990
-OT 1/100 Belga Giros|1430
-OT 1/100 Heavygun|1210
-OT 1/100 Dagi Ils|1210
-OT 1/100 Gundam F91|1980
-OT 1/100 RX-99 Neo Gundam|2310
+NG 1/100 G-Cannon|1210
+NG 1/100 Guntank R-44|990
+NG 1/100 Belga Giros|1430
+NG 1/100 Heavygun|1210
+NG 1/100 Dagi Ils|1210
+NG 1/100 Gundam F91|1980
+NG 1/100 RX-99 Neo Gundam|2310
 SD Sangoku Soketsuden Dong Zhuo Providence Gundam|880
 SD Sangoku Soketsuden Lu Bu Sinanju & Red Hare|1760
 SD Sangoku Soketsuden Taishi Ci Duel Gundam|880
@@ -63,7 +63,7 @@ OT Builders Parts HD MS Sight Lens 01 (Green)|660
 OT Builders Parts HD MS Panel 01|660
 DC Gundam Decal No.110 for Mobile Suit Gundam MSV General 1|550
 OT 30MM 1/144 eEXM-17 Alto [Blue]|1518
-OT RG Gaogaigar|7150
+RG Gaogaigar|7150
 OT Figure-rise Standard Super Saiyan God SS Gogeta|3740
 OT Figure-rise Standard Super Saiyan Broly Full Power|5500
 OT Figure-rise Standard Son Goku (Ultra Instinct)|3300
@@ -167,25 +167,25 @@ HG Blaze ZAKU Phantom (Rey Za Burrel)|2090
 HG Dom Trooper|2090
 HG Murasame (Andrew Waltfeld)|2090
 HG Murasame (Mass Production)|2090
-OT 1/100 Gale Strike Gundam|3410
-OT 1/100 Hail Buster Gundam|3410
-OT 1/100 Regen Duel Gundam|3410
-OT 1/100 Nix Providence Gundam|3410
-OT 1/100 Van Saber Gundam|3740
-OT 1/100 Nebula Blitz Gundam|3740
-OT 1/100 Gundam Virsago|2530
-OT 1/100 Gundam Double X|2530
-OT 1/100 Gundam Airmaster Burst|2200
-OT 1/100 Leopard Destroy|2200
-OT 1/100 G-Falcon Unit Gundam Double X|4070
-OT 1/100 Gundam Astray Blue Frame Second L|3410
-OT 1/100 Chaos Gundam|3190
-OT 1/100 Gunner ZAKU Warrior (Lunamaria Hawke)|3190
-OT 1/100 Saber Gundam|3520
-OT 1/100 Akatsuki Gundam (Ohwashi/Shiranui Full Set)|8800
-OT 1/100 Gundam Astray Green Frame|3410
-OT 1/100 Gundam Astray Mirage Frame|3410
-OT 1/100 Gundam Astray Mirage Frame Second Issue|3410
+NG 1/100 Gale Strike Gundam|3410
+NG 1/100 Hail Buster Gundam|3410
+NG 1/100 Regen Duel Gundam|3410
+NG 1/100 Nix Providence Gundam|3410
+NG 1/100 Van Saber Gundam|3740
+NG 1/100 Nebula Blitz Gundam|3740
+NG 1/100 Gundam Virsago|2530
+NG 1/100 Gundam Double X|2530
+NG 1/100 Gundam Airmaster Burst|2200
+NG 1/100 Leopard Destroy|2200
+NG 1/100 G-Falcon Unit Gundam Double X|4070
+NG 1/100 Gundam Astray Blue Frame Second L|3410
+NG 1/100 Chaos Gundam|3190
+NG 1/100 Gunner ZAKU Warrior (Lunamaria Hawke)|3190
+NG 1/100 Saber Gundam|3520
+NG 1/100 Akatsuki Gundam (Ohwashi/Shiranui Full Set)|8800
+NG 1/100 Gundam Astray Green Frame|3410
+NG 1/100 Gundam Astray Mirage Frame|3410
+NG 1/100 Gundam Astray Mirage Frame Second Issue|3410
 HG Verde Buster Gundam|2200
 HG Blu Duel Gundam|2200
 HG Cerberus BuCUE Hound|2090
