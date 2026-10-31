@@ -8,3 +8,77 @@
 #   Using the grade code (HG, MG, RG...) keeps HG and RG kits with the same name apart.
 # Kits that are not in kits.txt still show on the Releases page, marked "not in the tracker".
 # Lines starting with # and blank lines are ignored.
+
+@2026-10-30||Restocked
+MG Providence Gundam|5940
+MG Justice Gundam
+MG Destiny Gundam
+MG Wing Gundam Zero EW (Cross Contrast Color Clear Purple)
+MG Gundam Epyon EW (Cross Contrast Color Clear White)
+MG Gundam Kyrios (Trans-Am Mode Metallic Gloss Injection)
+MG Gundam Dynames (Trans-Am Mode Metallic Gloss Injection)
+MG 00 Qan[T]
+MG Gundam Double X|5390
+MG Gundam X Unit 3
+MG Char's Gelgoog Ver. 2.0
+MG Rick Dias
+MG Dom (Clear Color)|5720
+MG Full Armor Double Zeta Gundam Ver.Ka
+MG FAZZ Ver.Ka
+MG Double Zeta Gundam Ver.Ka
+MG Unicorn Gundam Perfectibility|14080
+MG Zeta Gundam Ver.Ka
+MG Shenlong Gundam
+MG Trans-Am Raiser (Clear Color)
+MG Gundam Mk-II (5-Color Ver. 2.0)
+MG Marasai|4950
+MG Crossbone Gundam X1 Full Cloth|5390
+MG Gundam Exia (Clear Color)
+MG Gundam Virtue (Clear Color)
+MG 00 Raiser
+MG V2 Gundam Ver.Ka
+MG Sazabi Ver.Ka
+HG Dom Trooper|2090
+HG Windam|1540
+HG Infinite Justice Gundam
+HG Destiny Gundam (Heine Custom)
+HG Murasame (Andrew Waltfeld Custom)
+HG Gyan Strom (Agnes Giebenrath Custom)|3190
+HG Nobel Gundam|1980
+HG God Gundam
+HG Graham's Union Flag Custom|1320
+HG Gundam Airmaster Burst
+HG Sturm Dias|2310
+HG Ground Type Gundam
+HG Black Knight Squad Cal-re
+HG Gundam Legilis
+HG Jegan
+HG Kshatriya
+HG Zeong
+HG Rick Dom II (Gaia / Ortega Custom)|2770
+HG Victory Gundam|1320
+HG RX-78-2 Gundam (Softbank Hawks Edition)|3840
+HG Geara Zulu (Guards Type)|2640
+HG Döben Wolf
+HG Gaza-C (Haman Custom)|1760
+HG Dijeh|2310
+RG Gundam Astray Gold Frame Amatsu Mina|3850
+RG Sazabi (Mechanical Core Plated)
+RG Hi-Nu Gundam (Titanium Finish)|13400
+RG Gundam Mk-II (Keroro Ver.)
+RG 00 Raiser
+PGU Nu Gundam
+PG Unicorn Gundam
+PG Strike Freedom Gundam|29150
+FM 1/100 Forbidden Gundam|6380
+RE/100 Gyunei Guss's Jagd Doga
+RE/100 Gun-EZ
+1/100 Gundam Virsago
+1/100 Gundam Leopard Destroy
+1/100 Gundam Airmaster Burst
+1/100 Gundam Double X|2530
+1/100 G-Falcon Unit Double X|4070
+1/144 Neo Gundam
+1/144 Silhouette Gundam Kai
+SD Kouryuu Double Zeta Gundam (Musha Retsuden)
+Haropla Eternal Pink
