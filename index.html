@@ -90,7 +90,7 @@ aside{position:static;max-height:none;overflow:visible}
 .nvi{max-width:1100px;margin:0 auto;padding:0 20px 36px}.nvi h2{font-stretch:70%;font-weight:800;font-size:32px;margin:0 0 6px}.nvi h3{margin:26px 0 10px}
 .lk{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.lk a{color:var(--ink);border:1px solid var(--ink);padding:10px 14px;text-decoration:none;font-weight:600}.lk a:hover{background:var(--ink);color:var(--bg)}
 .qg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}.qc{font:inherit;text-align:left;background:var(--sf);border:1px solid var(--rule);padding:12px;cursor:pointer;color:var(--ink)}.qc b{display:block;font-size:18px}.qc span{font-size:13px;color:var(--mut)}
-:root{--g-HG:#1f7a5c;--g-MG:#6a3fb5;--g-RG:#c25a0a;--g-PG:#8a6508;--g-RE:#b02f6c;--g-SD:#0b7d96;--g-FM:#4a5a73;--g-DC:#6b7587;--g-OT:#6b7587}
+:root{--g-HG:#1f7a5c;--g-MG:#6a3fb5;--g-RG:#c25a0a;--g-PG:#8a6508;--g-RE:#b02f6c;--g-SD:#0b7d96;--g-FM:#4a5a73;--g-DC:#6b7587;--g-OT:#6b7587;--g-NG:#525252;--g-Mega:#b91c1c}
 .g{background:var(--gc);color:#fff;border:0;border-radius:2px;padding:2px 8px;white-space:nowrap;justify-self:start}
 .ol{display:flex;align-items:center;gap:8px;font-weight:inherit}.dt{width:10px;height:10px;border-radius:2px;flex:none}
 .ph{margin-left:8px;font-size:12px;color:var(--mut);white-space:nowrap}.ph:hover{color:var(--ink)}
@@ -144,7 +144,7 @@ h1.bn{font-stretch:68%;font-weight:800;font-size:clamp(28px,6vw,36px);line-heigh
 <script type="module">
 const D=(await (await fetch("kits.txt",{cache:"no-store"})).text()).replace(/\r/g,"");
 const RT=(await fetch("releases.txt",{cache:"no-store"}).then(r=>r.ok?r.text():"").catch(()=>"")).replace(/\r/g,"");
-const GN={HG:"HG",MG:"MG",RG:"RG",PG:"PG",RE:"RE/100",SD:"SD / BB",DC:"Decals",FM:"FM",OT:"Other"};
+const GN={HG:"HG",MG:"MG",RG:"RG",PG:"PG",RE:"RE/100",SD:"SD / BB",DC:"Decals",FM:"FM",NG:"NG 1/100",Mega:"Mega Size",OT:"Other"};
 const CHN={regular:["General resale","var(--blue)"],pbandai:["Premium Bandai","var(--red)"],gbase:["Gundam Base","var(--yel)"]};
 const PR=()=>cur==="jpy"?[["u","Under ¥2,000"],["m","¥2,000 – ¥5,000"],["o","Over ¥5,000"]]:[["u","Under ₱1,000"],["m","₱1,000 – ₱2,500"],["o","Over ₱2,500"]];
 const pb=i=>{const j=cur==="jpy",v=j?i.$:i.$*R.v,a=j?2000:1000,b=j?5000:2500;return v<a?"u":v<=b?"m":"o"};
@@ -214,7 +214,7 @@ function render(){
   let g=gr[k].slice();if(st.o)g.sort((a,b)=>st.o==="a"?a.$-b.$:st.o==="d"?b.$-a.$:st.o==="az"?a.n.localeCompare(b.n):b.n.localeCompare(a.n));
   const all=open[k]||st.s||g.length<=LIM+3;
   h+=`<div class="sec" style="--c:${CHN[chk][1]}"><b>${CHN[chk][0]}</b><span>${qlabel(qk)}, ${g.length} kit${g.length>1?"s":""}</span></div>`+
-  (all?g:g.slice(0,LIM)).map(i=>`<div class="it"><span class="g" style="--gc:var(--g-${i.g})">${GN[i.g]}</span><span class="n">${esc(i.n)}${isNew(i)?' <i class="nw">New</i>':""}${i.rel?' <i class="rl">'+esc(i.rel.l)+" "+md(i.rel.d)+"</i>":""} <a class="ph" href="${pic(i)}" target="_blank" rel="noopener noreferrer">Photos</a> <a class="ph man" href="#manuals" data-g="${i.g}" data-m="${esc(i.n)}">Manual</a></span><div class="acts"><span class="p">${fmt(i.$)}</span><button class="own${O[i.n]?" on":""}" data-o="${esc(i.n)}" aria-pressed="${!!O[i.n]}">${O[i.n]?"✓ Secured":"+ Pre-order"}</button><button class="star${W[i.n]?" on":""}" data-w="${esc(i.n)}" aria-pressed="${!!W[i.n]}" aria-label="Watch ${esc(i.n)}">${W[i.n]?"★":"☆"}</button></div></div>`).join("")+
+  (all?g:g.slice(0,LIM)).map(i=>`<div class="it"><span class="g" style="--gc:var(--g-${i.g})">${GN[i.g]||i.g}</span><span class="n">${esc(i.n)}${isNew(i)?' <i class="nw">New</i>':""}${i.rel?' <i class="rl">'+esc(i.rel.l)+" "+md(i.rel.d)+"</i>":""} <a class="ph" href="${pic(i)}" target="_blank" rel="noopener noreferrer">Photos</a> <a class="ph man" href="#manuals" data-g="${i.g}" data-m="${esc(i.n)}">Manual</a></span><div class="acts"><span class="p">${fmt(i.$)}</span><button class="own${O[i.n]?" on":""}" data-o="${esc(i.n)}" aria-pressed="${!!O[i.n]}">${O[i.n]?"✓ Secured":"+ Pre-order"}</button><button class="star${W[i.n]?" on":""}" data-w="${esc(i.n)}" aria-pressed="${!!W[i.n]}" aria-label="Watch ${esc(i.n)}">${W[i.n]?"★":"☆"}</button></div></div>`).join("")+
   (all?"":`<button class="more" data-more="${k}">Show all ${g.length} kits</button>`)});
  $("out").innerHTML= budgetHtml + h;
 }
@@ -236,7 +236,7 @@ RT.split("\n").filter(l=>l.trim()&&l[0]!=="#").forEach(l=>{if(l[0]==="@"){[rd,rc
  const k=l.lastIndexOf("|"),hp=k>-1&&/^\s*\d+\s*$/.test(l.slice(k+1)),h=(hp?l.slice(0,k):l).trim(),sp=h.indexOf(" "),kg=sp>0&&GN[h.slice(0,sp)];
  if(/^\d{4}-\d{2}-\d{2}$/.test((rd||"").trim()))rels.push({d:rd.trim(),c:(rc||"").trim(),l:rlab,g:kg?h.slice(0,sp):"",n:kg?h.slice(sp+1).trim():h,$:hp?+l.slice(k+1):0,m:null})});
 rels.sort((a,b)=>a.d.localeCompare(b.d)).forEach(r=>{const c=items.filter(i=>nk(i.n)===nk(r.n)&&(!r.g||i.g===r.g)&&(!r.c||i.c===r.c));if(!c.length)return;const q=qOf(r.d);r.m=c.find(i=>i.p===q)||c.filter(i=>i.p<=q).sort((a,b)=>b.p.localeCompare(a.p))[0]||c.sort((a,b)=>a.p.localeCompare(b.p))[0];r.m.rel=r});
-const SC={HG:"HG 1/144",MG:"MG 1/100",RG:"RG 1/144",PG:"PG 1/60",RE:"RE/100 1/100",FM:"Full Mechanics 1/100",SD:"SD",DC:"",OT:""};
+const SC={HG:"HG 1/144",MG:"MG 1/100",RG:"RG 1/144",PG:"PG 1/60",RE:"RE/100 1/100",FM:"Full Mechanics 1/100",SD:"SD",DC:"",NG:"1/100",Mega:"1/48",OT:""};
 const pic=i=>{const n=i.n.replace(/\s*\((UC|AW|FC|AC|CE|BD)\)/g,"").trim(),q=/1\/|RE\/100|Full Mech|PG |SD |BD /.test(n)?n:(SC[i.g]+" "+n).trim();return"https://www.google.com/search?tbm=isch&q="+encodeURIComponent(q+" gunpla"+(i.c==="pbandai"?" Premium Bandai":i.c==="gbase"?" Gundam Base limited":""))};
 
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
@@ -309,7 +309,7 @@ function rres(){
   }
   const k=r.m, pr=r.$||(k?k.$:0);
   const gc = r.g ? "var(--g-"+r.g+")" : "var(--mut)";
-  const gn = r.g ? GN[r.g] : "OT";
+  const gn = r.g ? (GN[r.g]||r.g) : "OT";
   const cname = r.c && CHN[r.c] ? CHN[r.c][0] : r.c;
   const unlisted = k ? "" : "Not in tracker";
   const subtitle = [cname, unlisted].filter(Boolean).join(" • ");
