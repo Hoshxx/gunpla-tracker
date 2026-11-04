@@ -87,12 +87,12 @@ Haropla Eternal Pink
 HGUC Asshimar
 HGUC Hazel High Maneuver
 HGUC Gabthley
-HGUC Gaza C (Haman Karn Custom)
+HGUC Gaza C (Haman Karn Custom)|1760
 RG Aile Strike Gundam
-RG Gundam Astray Gold Frame Amatsu Mina
+RG Gundam Astray Gold Frame Amatsu Mina|3850
 RG Unicorn Gundam
 RG Zeong
-MG Gundam Double X
+MG Gundam Double X|5390
 MG Justice Gundam
 MG ZZ Gundam Ver.Ka
 MG Gunner Zaku Warrior (Lunamaria Hawke Custom)
