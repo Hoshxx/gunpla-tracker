@@ -511,7 +511,7 @@ HGUC Base Jabber (UC Ver.)
 
 @2026-10-29|pbandai|Pre-order
 HGUC Ghost Gundam
-HG Gundam Virsago
+HG Gundam Virsago|3190
 HGUC Engage Zero
 30MM Armored Core VI Steel Haze
 30MM Armored Core VI Milk Tooth
