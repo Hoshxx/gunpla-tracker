@@ -501,7 +501,7 @@ HG Strike Freedom Gundam Type II & Wings of Light Effect Set|4620
 @2027-Q1|pbandai|2026-10-30
 HG Advanced GN-X (Deborah Custom)|2420
 
-@2026-10-28|pbandai|Announcement
+@2026-Q4|pbandai|Announcement
 Megahouse VAKIT Dwadge G-Type|8800
 HGBF Try Burning Gundam
 HGBF Kamiki Burning Gundam
@@ -509,7 +509,7 @@ HGBF Powered GM Cardigan
 HGUC Dodai YS
 HGUC Base Jabber (UC Ver.)
 
-@2026-10-29|pbandai|Pre-order
+@2026-Q4|pbandai|Pre-order
 HGUC Ghost Gundam
 HG Gundam Virsago|3190
 HGUC Engage Zero
@@ -517,6 +517,6 @@ HGUC Engage Zero
 30MM Armored Core VI Milk Tooth
 30MM Armored Core VI VP-40S
 
-@2026-11-05|pbandai|Pre-order
+@2026-Q4|pbandai|Pre-order
 MG 1/100 S Gundam Booster Unit Type|11770
 MG 1/100 Destiny Impulse Gundam R (Regenes)|6160
