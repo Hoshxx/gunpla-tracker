@@ -516,3 +516,7 @@ HGUC Engage Zero
 30MM Armored Core VI Steel Haze
 30MM Armored Core VI Milk Tooth
 30MM Armored Core VI VP-40S
+
+@2026-11-05|pbandai|Pre-order
+MG 1/100 S Gundam Booster Unit Type|11770
+MG 1/100 Destiny Impulse Gundam R (Regenes)|6160
