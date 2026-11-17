@@ -521,3 +521,10 @@ HGUC Engage Zero
 @2026-Q4|pbandai|2026-11-05
 MG 1/100 S Gundam Booster Unit Type|11770
 MG 1/100 Destiny Impulse Gundam R (Regenes)|6160
+
+# Added Nov 17, 2026 (P-Bandai reissue)
+@2027-Q2|pbandai|2026-11-17
+RE/100 Gundam Mk-III Unit 8|4400
+HG ZII (Travis Kirkland Color)|2860
+MG 1/100 Zeta Gundam Unit 3 P2 Type Red Zeta|7590
+MG 1/100 Zeta Gundam Unit 3 B Type Gray Zeta|7590
